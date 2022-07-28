@@ -1,0 +1,6 @@
+{
+    "editor.cursorSmoothCaretAnimation": true,
+    "files.associations": {
+        "history.h": "c"
+    }
+}
