@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/07/29 17:58:19 by skasmi           ###   ########.fr       */
+/*   Created: 2022/07/29 17:23:42 by skasmi            #+#    #+#             */
+/*   Updated: 2022/07/30 02:40:36 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../minishell.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "./libft/libft.h"
+int chdir(const char *path); // return 0 on success || -1 if error ...
 
-// typedef struct s_token
-// {
-//     int type;
-//     char value;
-//     s_token *next;
-// }   t_token;
-
-typedef	struct	s_list
+int main()
 {
-	void			*content;
-	struct s_list	*next;
-}                   t_list;
-
-#endif
+    
+    return (0);
+}
