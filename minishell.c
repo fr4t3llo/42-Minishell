@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/07/28 02:38:41 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/22 16:53:33 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,7 @@ int main(int ac, char **av)
         tab = (char **)malloc(sizeof(char) * ft_strlen(str));
         if (!tab)
             return 0;
-        while (str[i])
-        {
-            if (str[i] == '|')
-            {
-                if (str[i + 1] == '|')
-                    ft_lstnew(ft_strnput(str, i, i + 1)); // OR ||
-            }
-            else if (str[i] == '&')
-            {
-                if (str[i + 1] == '&')
-                    ft_lstnew(ft_strnput(str, i, i + 1)); // AND &&
-            }
-            else if (str[i] == '>')
-            {
-                ft_lstadd_back()
-            }
-            i++;
+        
         }
         // tab = ft_split(str, '|');
         // while (tab[i])
