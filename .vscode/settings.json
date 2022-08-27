@@ -1,6 +1,7 @@
 {
     "editor.cursorSmoothCaretAnimation": true,
     "files.associations": {
-        "history.h": "c"
+        "history.h": "c",
+        "libft.h": "c"
     }
 }

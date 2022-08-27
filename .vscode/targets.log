@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Aug 23 18:56:33 2022
+# Make data base, printed on Wed Aug 24 16:19:04 2022
 
 # Variables
 
@@ -39,7 +39,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cd5800339_/T/vscode-ipc-2f98da35-3100-40fc-aeb1-a18c70c88c18.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cd5800339_/T/vscode-ipc-3709232e-6575-461e-84a8-0165571bafba.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -47,15 +47,13 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = 81E7BFA1-4F3A-4544-9455-82B60359C799
-# environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.YL0BMUdMzP/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.T4pug5D6NS/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -69,7 +67,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /Users/skasmi
 # default
-MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/skasmi/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
 # environment
@@ -111,7 +109,7 @@ LESS = -R
 # makefile (from `Makefile', line 22)
 BOBJCTS = $(BSRCS:%.c=%.o)
 # default
-MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
 .VARIABLES := 
 # environment
@@ -127,15 +125,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.2172
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18D2A:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -146,8 +142,6 @@ PAGER = less
 LC_ALL = C
 # makefile (from `Makefile', line 17)
 NAME2 = minishell.h
-# environment
-SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
@@ -159,9 +153,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 769
+VSCODE_PID = 6710
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=3/103=3%
+# Load=71/1024=7%, Rehash=0, Collisions=3/100=3%
 
 # Pattern-specific Variable Values
 
@@ -169,9 +163,9 @@ VSCODE_PID = 769
 
 # Directories
 
-# . (device 16777225, inode 44473): 13 files, no impossibilities.
+# . (device 16777225, inode 44473): 11 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -268,7 +262,7 @@ minishell.h:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Aug 23 18:56:33 2022
+# Finished Make data base on Wed Aug 24 16:19:04 2022
 
  
 make: *** No rule to make target `minishell.o', needed by `minishell'.  Stop.

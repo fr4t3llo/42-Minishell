@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/22 16:53:33 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/27 20:35:42 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ char *ft_strnput(char *str, int n, int m)
 int main(int ac, char **av)
 {
     int     i;
-    int     j;
+    // int     j;
     int     k;
     char    *str;
-    char    **splt;
+    // char    **splt;
     char    **tab;
     int     l;
+    (void)ac;
+    (void)av;
 
     
     i = 0;
@@ -93,8 +95,6 @@ int main(int ac, char **av)
         tab = (char **)malloc(sizeof(char) * ft_strlen(str));
         if (!tab)
             return 0;
-        
-        }
         // tab = ft_split(str, '|');
         // while (tab[i])
         // {
