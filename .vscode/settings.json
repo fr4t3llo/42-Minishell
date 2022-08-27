@@ -2,6 +2,9 @@
     "editor.cursorSmoothCaretAnimation": true,
     "files.associations": {
         "history.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "minishell.h": "c",
+        "*.a": "c",
+        "readline.h": "c"
     }
 }

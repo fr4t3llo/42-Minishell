@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/27 20:35:42 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/27 20:52:47 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,16 @@ int main(int ac, char **av)
     while (1)
     {
         str = readline("FRATELLO => ");
-        tab = (char **)malloc(sizeof(char) * ft_strlen(str));
+        tab = (char **)malloc(sizeof(char) * strlen(str));
         if (!tab)
             return 0;
-        // tab = ft_split(str, '|');
+        // *tab = ft_split(str, '|');
         // while (tab[i])
         // {
         //     printf ("%s\n", tab[i]);
         //     i++;
         // }
+        printf("%s\n", str);
     }
     // while (str[i])
     // {

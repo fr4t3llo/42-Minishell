@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/27 20:38:17 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/27 20:55:48 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "libft/libft.h"
+# include <./libc.h>
+
+
+// global variable ***
+int var_global;
+
+//libft function
+size_t	ft_strlen(const char *str);
 
 // typedef struct s_token
 // {
