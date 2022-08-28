@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/28 04:10:58 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/28 05:43:19 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ size_t	ft_strlen(const char *str);
 //     char value;
 //     s_token *next;
 // }   t_token;
-
 
 typedef struct s_int
 {
