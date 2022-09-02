@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/31 04:17:56 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/02 20:47:02 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
-# include <stdio.h>
+# include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <./libc.h>
@@ -34,6 +34,15 @@ size_t	ft_strlen(const char *str);
 //     s_token *next;
 // }   t_token
 
+typedef struct s_env
+{
+	char *data;
+	char *value;
+	struct s_env *next;
+	struct s_env *prev;
+}	t_env;
+
+
 typedef struct s_int
 {
 	int i;
@@ -46,8 +55,22 @@ typedef struct s_int
 
 typedef	struct	s_list
 {
-	void			*content;
+	char			*content;
 	struct s_list	*next;
 }                   t_list;
+
+//libft_funcs
+char	**ft_split(char const *s, char c);
+
+//list env
+
+t_env  *ft_lstnew_env(char *data, char *value);
+void	ft_lst_addback_env(t_env **lst, t_env *new);
+t_env	*ft_lstlast_env(t_env *lst);
+//lists
+t_list  *ft_lstnew(void *content);
+t_list  *ft_lstlast(t_list *lst);
+void    ft_lstadd_back(t_list **alst, t_list *new);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/31 20:58:21 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/02 20:47:26 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char *ft_strnput(char *str, int n, int m)
 }
 
 // ********************* stock all env in table 2D called env_var *************
-char    *copy_envs(char **env)
+char    **copy_envs(char **env)
 {   
     int nb_of_line = 0;
     int nb_for_alloc = 0;
@@ -84,7 +84,6 @@ char    *copy_envs(char **env)
         nb_for_alloc = strlen(env[nb_of_line]);
         env_var = (char **)malloc(sizeof(char) * nb_for_alloc);
         nb_of_line++;
-        // printf("im here\n");
         nb_for_alloc++;
     }
     nb_of_line = 0;
@@ -95,46 +94,44 @@ char    *copy_envs(char **env)
         nb_for_alloc++;
         nb_of_line++;
     }
-    nb_of_line = 0;
-    while (env_var[nb_of_line])
-    {
-        printf("%s\n", env_var[nb_of_line]);
-        nb_of_line++;
-    }
-    return &(**env_var);
+    return (env_var);
 }
 
+t_env *ft_new_env(char **env)
+{
+    t_env *new_env;
+    char **splt;
+    int i;
+    
+    i = 0;
+    while (env[i])
+    {
+        splt = ft_split(env[i], '=');
+        ft_lst_addback_env(&new_env, ft_lstnew_env(splt[0], splt[1]));
+        i++;
+        free(splt);
+    }
+    return (new_env);
+}
 int main(int ac, char **av, char **env)
 {
-    int     i;
-    int     k;
-    char    *str;
-    char    **tab;
-    int     l;
     (void)ac;
     (void)av;
-    (void)env;
+    char *cmd;
+    char **new_env;
+    char **tab;
 
-    i = 0;
-    k = 0;
-    l = 0;
-    // t_list *t;
-    // while (env[l])
-    // {
-    //     printf("text\n");
-    //     t->content = env[l];
-    //     l++;
-    //     t->next = t->content; 
-    // }
+    new_env = copy_envs(env);
+    ft_new_env(new_env);
     
-    copy_envs(env);
     while (1)
     {
-        str = readline("FRATELLO😈 => ");
-        tab = (char **)malloc(sizeof(char) * strlen(str));
+        cmd = readline("FRATELLO😈=> ");
+        add_history(cmd);
+        tab = (char **)malloc(sizeof(char) * strlen(cmd));
         if (!tab)
             return 0;
-        printf("%s\n", str);
+        // printf("%s\n", cmd);
     }
     return (0);
 }

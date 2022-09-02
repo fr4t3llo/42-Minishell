@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/08/27 20:34:34 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/02 20:50:34 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS=-Wall -Wextra -Werror
 NAME=minishell
 NAME2=minishell.h
 
-SRCS=minishell.c \
+SRCS=minishell.c libft/ft_lst_addback_env.c libft/ft_lst_last_env.c\
+	libft/ft_lstnew_env.c libft/ft_split.c \
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)
