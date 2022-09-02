@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/28 05:43:28 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/08/31 20:58:21 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ char *ft_strnput(char *str, int n, int m)
     tab[j] = '\0';
     return (tab);
 }
-// ********************* stock all env in table 2D called env_var *************
 
+// ********************* stock all env in table 2D called env_var *************
 char    *copy_envs(char **env)
 {   
     int nb_of_line = 0;
@@ -103,6 +103,7 @@ char    *copy_envs(char **env)
     }
     return &(**env_var);
 }
+
 int main(int ac, char **av, char **env)
 {
     int     i;
@@ -117,14 +118,14 @@ int main(int ac, char **av, char **env)
     i = 0;
     k = 0;
     l = 0;
-    t_list *t;
-    while (env[l])
-    {
-        printf("text\n");
-        t->content = env[l];
-        l++;
-        t->next = t->content; 
-    }
+    // t_list *t;
+    // while (env[l])
+    // {
+    //     printf("text\n");
+    //     t->content = env[l];
+    //     l++;
+    //     t->next = t->content; 
+    // }
     
     copy_envs(env);
     while (1)
