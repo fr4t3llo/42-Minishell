@@ -6,10 +6,20 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:46:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/22 14:51:05 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/03 00:34:15 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <string.h>
 
+void ft_env(t_env *t)
+{
+    t_env *temp;
+    
+    temp = t;
+    while (temp)
+    {
+        printf("%s=%s\n", temp->data, temp->value);
+        temp=temp->next;
+    }
+}

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/02 20:47:26 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/03 01:01:07 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char    **copy_envs(char **env)
 
 t_env *ft_new_env(char **env)
 {
-    t_env *new_env;
+    t_env *new_env_list = NULL;
     char **splt;
     int i;
     
@@ -107,11 +107,11 @@ t_env *ft_new_env(char **env)
     while (env[i])
     {
         splt = ft_split(env[i], '=');
-        ft_lst_addback_env(&new_env, ft_lstnew_env(splt[0], splt[1]));
+        ft_lst_addback_env(&new_env_list, ft_lstnew_env(splt[0], splt[1]));
         i++;
         free(splt);
     }
-    return (new_env);
+    return (new_env_list);
 }
 int main(int ac, char **av, char **env)
 {
@@ -120,13 +120,17 @@ int main(int ac, char **av, char **env)
     char *cmd;
     char **new_env;
     char **tab;
+    t_env *list_env;
 
     new_env = copy_envs(env);
-    ft_new_env(new_env);
-    
+    list_env = ft_new_env(env);
+    // printf("hello\n");
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
+        // if(cmd[0] == 'e' && cmd[1] == 'n' && cmd[2] == 'v')
+        if (ft_strcmp(cmd, "env") == 0)
+            ft_env(list_env);
         add_history(cmd);
         tab = (char **)malloc(sizeof(char) * strlen(cmd));
         if (!tab)

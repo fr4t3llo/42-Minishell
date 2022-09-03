@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/02 20:47:02 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/03 01:01:22 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef	struct	s_list
 
 //libft_funcs
 char	**ft_split(char const *s, char c);
+int ft_strcmp(char *s1, char *s2);
 
 //list env
 
@@ -72,5 +73,8 @@ t_list  *ft_lstnew(void *content);
 t_list  *ft_lstlast(t_list *lst);
 void    ft_lstadd_back(t_list **alst, t_list *new);
 
+//minishell function 
+
+void ft_env(t_env *t);
 
 #endif
