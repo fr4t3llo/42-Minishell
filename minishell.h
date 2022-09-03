@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/03 01:01:22 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/03 20:13:54 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void    ft_lstadd_back(t_list **alst, t_list *new);
 
 //minishell function 
 
-void ft_env(t_env *t);
+void	ft_env(t_env *t);
+void    ft_pwd();
 
 #endif
