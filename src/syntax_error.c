@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/05 02:24:14 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/05 14:26:27 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	ft_check_cmd_sq_q(char *cmd)
 	return (1);
 }	
 
-int main()
-{
-	char *cmd = "ls -la \" ls \" | \'\' ";
+// int main()
+// {
+// 	char *cmd = "ls -la \" ls\' \" |  \' \" \'";
 	
-	printf("%d\n", ft_check_cmd_sq_q(cmd));
-}
+// 	printf("%d\n", ft_check_cmd_sq_q(cmd));
+// }

@@ -5,20 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 05:17:31 by skasmi            #+#    #+#             */
-/*   Updated: 2022/08/28 05:19:35 by skasmi           ###   ########.fr       */
+/*   Created: 2022/08/28 05:19:43 by skasmi            #+#    #+#             */
+/*   Updated: 2022/09/05 03:57:13 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+// # x = 4
+// # while x < 10:
+// #     x *= x/2
+// # print(x)
 
+#include <stdio.h>
 int main()
 {
-    int x = 4;
-    while(x < 10)
+    int x;
+
+    x = 4;
+    while (x < 10)
     {
         x *= x / 2;
     }
     printf("%d\n", x);
-    return (0);
 }

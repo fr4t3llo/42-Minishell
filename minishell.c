@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/04 21:00:06 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/05 14:28:47 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ int main(int ac, char **av, char **env)
             ft_env(list_env);
         if (ft_strcmp(cmd, "pwd") == 0)
             ft_pwd();
+        if (ft_check_cmd_sq_q(cmd) == 0)
+            printf("Minishell : syntax error !!\n");
         add_history(cmd);
         tab = (char **)malloc(sizeof(char) * strlen(cmd));
         if (!tab)

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/03 20:13:54 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/05 14:23:41 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef	struct	s_list
 	char			*content;
 	struct s_list	*next;
 }                   t_list;
+//syntax error **********************************
+
+int	ft_check_cmd_sq_q(char *cmd);
 
 //libft_funcs
 char	**ft_split(char const *s, char c);

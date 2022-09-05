@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 05:19:43 by skasmi            #+#    #+#              #
-#    Updated: 2022/08/28 05:33:03 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/05 12:33:15 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,3 +14,16 @@ x = 4
 while x < 10:
     x *= x/2
 print(x)
+
+#include <stdio.h>
+int main()
+{
+    int x;
+
+    x = 4;
+    while (x < 10)
+    {
+        x *= x / 2;
+    }
+    printf("%d\n", x);
+}
