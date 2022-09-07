@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/05 14:23:41 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/07 02:06:56 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef	struct	s_list
 }                   t_list;
 //syntax error **********************************
 
+int	ft_check_parenthese(char *cmd);
 int	ft_check_cmd_sq_q(char *cmd);
 
 //libft_funcs
