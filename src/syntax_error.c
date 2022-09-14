@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/14 02:45:49 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/14 19:58:01 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,27 @@ int ft_check_redirection(char *cmd)
 
 int ft_syntax_general(char *cmd)
 {
-	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0 || ft_check_redirection(cmd) == 0)
+	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0 || ft_check_redirection(cmd) == 0 || ft_skip_before_space(cmd) == 0)
 		return (0);
 	else 
 		return (1);
+}
+
+int ft_skip_before_space(char *cmd)
+{
+	int i;
+	char **splt;
+	
+	i = 1;
+	splt = ft_split(cmd, ' ');
+	while (splt[i])
+		i++;
+	i--;
+	// printf("%d\n", i);
+	// printf("%c\n", splt[4][0]);
+	if (splt[i][0] == '|')
+		return (0);
+	return (1);
 }
 // int	ft_check_parenthese(char *cmd)
 // {
@@ -106,10 +123,11 @@ int ft_syntax_general(char *cmd)
 // }
 // #include <stdio.h>
 
+
 // int main()
 // {
-// 	char *str = "ld -la () () (()))";
-// 	printf("%d\n", ft_check_parenthese(str));
+// 	char *str = "ld -la () () (())) |        ";
+// 	printf("%d\n", ft_skip_before_space(str));
 // 	// printf("%d\n", check_parent(str));
 // 	return (0);
 // }

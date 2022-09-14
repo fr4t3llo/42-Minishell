@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/14 02:45:33 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/14 19:48:29 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef	struct	s_list
 int	ft_check_cmd_sq_q(char *cmd);
 int ft_check_pipe(char *cmd);
 int ft_check_redirection(char *cmd);
+int ft_skip_before_space(char *cmd);
 int ft_syntax_general(char *cmd);
 
 
