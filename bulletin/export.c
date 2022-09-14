@@ -6,9 +6,13 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/07/29 17:56:12 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/08 02:15:43 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+// void    ft_export(char **environment)
+// {
+    
+// }

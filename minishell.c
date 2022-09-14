@@ -6,72 +6,72 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/07 02:10:23 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/14 02:22:46 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// ************************ create new list *********************************
-t_list  *ft_lstnew(void *content)
-{
-	t_list	*lst;
+// // ************************ create new list *********************************
+// t_list  *ft_lstnew(void *content)
+// {
+// 	t_list	*lst;
 
-	if (!(lst = (t_list*)malloc(sizeof(*lst))))
-		return (NULL);
-	lst->content = content;
-	lst->next = NULL;
-	return (lst);
-}
+// 	if (!(lst = (t_list*)malloc(sizeof(*lst))))
+// 		return (NULL);
+// 	lst->content = content;
+// 	lst->next = NULL;
+// 	return (lst);
+// }
 
-// ************************  check last node  ********************************
-t_list  *ft_lstlast(t_list *lst)
-{
-	while (lst)
-	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
-}
+// // ************************  check last node  ********************************
+// t_list  *ft_lstlast(t_list *lst)
+// {
+// 	while (lst)
+// 	{
+// 		if (!lst->next)
+// 			return (lst);
+// 		lst = lst->next;
+// 	}
+// 	return (lst);
+// }
 
-//************* add node to the last node in liked list ***********************
-void    ft_lstadd_back(t_list **alst, t_list *new)
-{
-	t_list	*last;
+// //************* add node to the last node in liked list ***********************
+// void    ft_lstadd_back(t_list **alst, t_list *new)
+// {
+// 	t_list	*last;
 
-	if (alst)
-	{
-		if (*alst)
-		{
-			last = ft_lstlast(*alst);
-			last->next = new;
-		}
-		else
-			*alst = new;
-	}
-}
+// 	if (alst)
+// 	{
+// 		if (*alst)
+// 		{
+// 			last = ft_lstlast(*alst);
+// 			last->next = new;
+// 		}
+// 		else
+// 			*alst = new;
+// 	}
+// }
 
-// **************** copy string between n & m in new str **********************
-char *ft_strnput(char *str, int n, int m)
-{
-    int i;
-    int j;
+// // **************** copy string between n & m in new str **********************
+// char *ft_strnput(char *str, int n, int m)
+// {
+//     int i;
+//     int j;
 
-    j = 0;
-    i = 0;
-    char *tab;
-    tab = (char *)malloc(sizeof(char) * (n + m) + 1);
-    while (n < m)
-    {
-        tab[j] = str[n];
-        j++;
-        n++;
-    }
-    tab[j] = '\0';
-    return (tab);
-}
+//     j = 0;
+//     i = 0;
+//     char *tab;
+//     tab = (char *)malloc(sizeof(char) * (n + m) + 1);
+//     while (n < m)
+//     {
+//         tab[j] = str[n];
+//         j++;
+//         n++;
+//     }
+//     tab[j] = '\0';
+//     return (tab);
+// }
 
 // ********************* stock all env in table 2D called env_var *************
 char    **copy_envs(char **env)
@@ -118,27 +118,30 @@ int main(int ac, char **av, char **env)
     (void)ac;
     (void)av;
     char *cmd;
-    char **new_env;
+    // char **new_env;
     char **tab;
     t_env *list_env;
 
-    new_env = copy_envs(env);
+    // new_env = copy_envs(env);
     list_env = ft_new_env(env);
     // printf("hello\n");
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
         // if(cmd[0] == 'e' && cmd[1] == 'n' && cmd[2] == 'v')
+        if (ft_syntax_general(cmd) == 0)
+            printf("Minishell : syntax error !!\n");
         if (ft_strcmp(cmd, "env") == 0)
             ft_env(list_env);
         if (ft_strcmp(cmd, "pwd") == 0)
             ft_pwd();
-        if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_parenthese(cmd) == 0)
-            printf("Minishell : syntax error !!\n");
+        // if (ft_strcmp(cmd, "export") == 0)
+        //     ft_export(list_env);
         add_history(cmd);
         tab = (char **)malloc(sizeof(char) * strlen(cmd));
         if (!tab)
             return 0;
+        free(tab);
         // printf("%s\n", cmd);
     }
     return (0);

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/07 02:06:56 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/14 02:45:33 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,30 @@ typedef	struct	s_list
 }                   t_list;
 //syntax error **********************************
 
-int	ft_check_parenthese(char *cmd);
+// int	ft_check_parenthese(char *cmd);
 int	ft_check_cmd_sq_q(char *cmd);
+int ft_check_pipe(char *cmd);
+int ft_check_redirection(char *cmd);
+int ft_syntax_general(char *cmd);
+
 
 //libft_funcs
 char	**ft_split(char const *s, char c);
 int ft_strcmp(char *s1, char *s2);
 
 //list env
-
 t_env  *ft_lstnew_env(char *data, char *value);
 void	ft_lst_addback_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
+
 //lists
 t_list  *ft_lstnew(void *content);
 t_list  *ft_lstlast(t_list *lst);
 void    ft_lstadd_back(t_list **alst, t_list *new);
 
-//minishell function 
-
+//minishell function
 void	ft_env(t_env *t);
 void    ft_pwd();
+void    ft_export(t_env *t);
 
 #endif
