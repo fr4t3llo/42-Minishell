@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/07 23:42:03 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/15 01:01:27 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ NAME=minishell
 NAME2=minishell.h
 
 SRCS=minishell.c libft/ft_lst_addback_env.c libft/ft_lst_last_env.c \
-	libft/ft_lstnew_env.c libft/ft_split.c libft/ft_strcmp.c \
-	bulletin/env.c bulletin/export.c bulletin/pwd.c src/syntax_error.c\
+	libft/ft_lstnew_env.c libft/ft_split.c libft/ft_strcpy.c libft/ft_strlen.c libft/ft_strcmp.c \
+	bulletin/env.c bulletin/export.c bulletin/pwd.c src/syntax_error.c bulletin/cd.c\
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/14 19:48:29 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/15 01:16:17 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+#include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <./libc.h>
@@ -71,6 +72,7 @@ int ft_syntax_general(char *cmd);
 //libft_funcs
 char	**ft_split(char const *s, char c);
 int ft_strcmp(char *s1, char *s2);
+char    *ft_strcpy(char * dst, const char * src);
 
 //list env
 t_env  *ft_lstnew_env(char *data, char *value);
@@ -86,5 +88,7 @@ void    ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_env(t_env *t);
 void    ft_pwd();
 void    ft_export(t_env *t);
+void    ft_cd(char *path);
+char	*ft_get_cd(char *cmd);
 
 #endif
