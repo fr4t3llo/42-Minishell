@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 01:03:44 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/15 17:48:24 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,28 +82,29 @@ int ft_check_redirection(char *cmd)
 // }
 int ft_syntax_general(char *cmd)
 {
-	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0 || ft_check_redirection(cmd) == 0 || ft_skip_before_space(cmd) == 0)
+	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0 || ft_check_redirection(cmd) == 0)
 		return (0);
 	else 
 		return (1);
 }
 
-int ft_skip_before_space(char *cmd)
-{
-	int i;
-	char **splt;
+// int ft_skip_before_space(char *cmd)
+// {
+// 	int i;
+// 	char **splt;
 	
-	i = 1;
-	splt = ft_split(cmd, ' ');
-	while (splt[i])
-		i++;
-	i--;
-	// printf("%d\n", i);
-	// printf("%c\n", splt[4][0]);
-	if (splt[i][0] == '|')
-		return (0);
-	return (1);
-}
+// 	i = 1;
+// 	splt = ft_split(cmd, ' ');
+// 	while (splt[i])
+// 		i++;
+// 	i--;
+// 	// printf("%d\n", i);
+// 	printf("[%c]\n", splt[1][0]);
+// 	if (splt[i][0] == '|')
+// 		return (0);
+// 	// printf("im here\n");
+// 	return (1);
+// }
 // int	ft_check_parenthese(char *cmd)
 // {
 // 		int i;

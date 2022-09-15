@@ -6,70 +6,70 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:40:28 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 04:41:46 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/15 20:44:55 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// char *ft_skip_space(char *string, int n)
+// char *ft_get_cd(char *cmd)
+// {
+//     char **tab;
+
+//     tab = ft_split(cmd, ' ');
+//     return (tab[0]);
+// }
+
+void *ft_get_home(t_env *t)
+{
+    t_env *tmp;
+    
+    tmp = t;
+    while (tmp)
+    {
+        // if(ft_strcmp(t->data, "HOME") == 0)
+        //     return(t->value);
+        // else
+            printf("%s   %s\n", t->data, t->value); 
+            tmp = tmp->next;
+    }
+    // return (NULL);
+}
+
+// char *ft_get_path(char *cmd)
 // {
 //     int i;
 //     int j;
+//     char *path = NULL; 
+//     char **tab;
 
-//     j = 0;
 //     i = 0;
-//     char *without_space;
-//     without_space = (char *)malloc(sizeof(char *) * ft_strlen(string));
-//     while (string[i] && string[i] == ' ')
-//         i++;
-//     while(string[i] && string[i] != ' ')
-//     {
-//         without_space[j] = string[i];
-//         i++;
-//         j++;
-//     }
-//     return (without_space);
-// }
-
-char *ft_get_cd(char *cmd)
-{
-    char **tab;
-
-    tab = ft_split(cmd, ' ');
-    return (tab[0]);
-}
-
-char *ft_get_path(char *cmd)
-{
-    int i;
-    int j;
-    char *path;
-    char **tab;
-
-    i = 0;
-    j = 0;
-    path = (char *)malloc(sizeof(char) * ft_strlen(cmd));
-    tab = ft_split(cmd, ' ');    
-    if (ft_strcmp(tab[0], "cd") == 0)
-        ft_strcpy(path, tab[1]);
-    return (path);
-}
-
-void    ft_cd(char *cmd)
-{
-    // printf("im here \n");     
-    char *path = ft_get_path(cmd);
-    if (chdir(path) == 0)
-        return;
-        // perror(ft_get_path(cmd));
+//     j = 0;
+//     path = (char *)malloc(sizeof(char) * ft_strlen(cmd));
+//     if (!path)
+//         return (NULL);
+//     tab = ft_split(cmd, ' ');    
+//     if (ft_strcmp(tab[0], "cd") == 0)
+//         ft_strcpy(path, tab[1]);
+//     // printf("%d\n", ft_strcmp(tab[1], ""));
+//     else if (ft_strcmp(tab[1], "") == -1)
         
-}
-// int main()
-// {
-//    char *str = "            cd              Desktop/minishell            ";
-// //    char *path = ft_get_path(str);
-//     ft_get_cd(str);
-// //    printf("%s\n", path);
-//    return (0); 
+//     return (path);
 // }
+
+// void    ft_cd(char *cmd)
+// {
+//     if (!cmd)
+//         return ; 
+//     char *path = ft_get_path(cmd);
+//     if (chdir(path) == 0)
+//         return;
+//     perror(ft_get_path(cmd));
+// }
+
+int main()
+{
+    t_env *t;
+    printf("%s\n", ft_get_home(t));
+    return (0);
+}
