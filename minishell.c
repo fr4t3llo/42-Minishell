@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 01:16:31 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/15 04:43:57 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,13 @@ int main(int ac, char **av, char **env)
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
-        // if(cmd[0] == 'e' && cmd[1] == 'n' && cmd[2] == 'v')
-        
-        // if (ft_syntax_general(cmd) == 0)
-        //     printf("Minishell : syntax error !!\n");
+        if (cmd)
+        printf("%s\n", cmd);
+        if (ft_syntax_general(cmd) == 0)
+            printf("Minishell : syntax error !!\n");
         if (ft_strcmp(cmd, "env") == 0)
             ft_env(list_env);
-        if (ft_strcmp(cmd, "pwd") == 0)
+        else if (ft_strcmp(cmd, "pwd") == 0)
             ft_pwd();
         if (ft_strcmp(ft_get_cd(cmd), "cd") == 0)
             ft_cd(cmd);

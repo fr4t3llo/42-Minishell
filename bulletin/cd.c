@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:40:28 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 01:20:13 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/15 04:41:46 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char *ft_get_cd(char *cmd)
 {
     char **tab;
 
-    tab = ft_split(cmd, ' ');    
+    tab = ft_split(cmd, ' ');
     return (tab[0]);
 }
 
@@ -53,18 +53,16 @@ char *ft_get_path(char *cmd)
     tab = ft_split(cmd, ' ');    
     if (ft_strcmp(tab[0], "cd") == 0)
         ft_strcpy(path, tab[1]);
-    // printf("%s\n", path);
     return (path);
 }
 
 void    ft_cd(char *cmd)
 {
+    // printf("im here \n");     
     char *path = ft_get_path(cmd);
-    // printf("%s\n", path);
     if (chdir(path) == 0)
-        return ;
-    else 
-        perror(ft_get_path(cmd));
+        return;
+        // perror(ft_get_path(cmd));
         
 }
 // int main()
@@ -74,18 +72,4 @@ void    ft_cd(char *cmd)
 //     ft_get_cd(str);
 // //    printf("%s\n", path);
 //    return (0); 
-// }
-
-// int chdir(const char *path) // return 0 if change directory success || -1 if error ...
-// {
-    
-// }
-// int main()
-// {
-//     int i = chdir("/Users/skasmi/Desktop");
-//     if(i < 0)
-//         printf("not change directory .. \n");
-//     else
-//         printf("change success\n");
-//     return(0);
 // }
