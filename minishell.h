@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 01:16:17 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:11:09 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int ft_syntax_general(char *cmd);
 char	**ft_split(char const *s, char c);
 int ft_strcmp(char *s1, char *s2);
 char    *ft_strcpy(char * dst, const char * src);
+int	ft_atoi(const char *str);
 
 //list env
 t_env  *ft_lstnew_env(char *data, char *value);
@@ -89,6 +90,7 @@ void	ft_env(t_env *t);
 void    ft_pwd();
 void    ft_export(t_env *t);
 void    ft_cd(char *path);
+int   	ft_exit(char *cmd);
 char	*ft_get_cd(char *cmd);
 
 #endif

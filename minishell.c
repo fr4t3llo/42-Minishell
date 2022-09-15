@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 20:10:51 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/16 00:33:10 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,17 +113,27 @@ t_env *ft_new_env(char **env)
     }
     return (new_env_list);
 }
+
+void    ft_bulletin(char *cmd)
+{
+    if (ft_syntax_general(cmd) == 0)
+        printf("Minishell : syntax error !!\n");
+    if (ft_strcmp(cmd, "pwd") == 0)
+        ft_pwd();
+    if (ft_strcmp(ft_get_cd(cmd), "cd") == 0)
+        ft_cd(cmd);
+    if (ft_strcmp(ft_get_cd(cmd), "exit") == 0)
+        ft_exit(cmd);
+}
+
 int main(int ac, char **av, char **env)
 {
     (void)ac;
     (void)av;
     char *cmd;
-    // char **new_env;
     t_env *list_env;
 
-    // new_env = copy_envs(env);
     list_env = ft_new_env(env);
-    // printf("hello\n");
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
@@ -133,18 +143,12 @@ int main(int ac, char **av, char **env)
             free(cmd);
             continue;
         }
-        if (ft_syntax_general(cmd) == 0)
-            printf("Minishell : syntax error !!\n");
         if (ft_strcmp(cmd, "env") == 0)
             ft_env(list_env);
-        if (ft_strcmp(cmd, "pwd") == 0)
-            ft_pwd();
-        if (ft_strcmp(ft_get_cd(cmd), "cd") == 0)
-            ft_cd(cmd);
+        ft_bulletin(cmd);
         // if (ft_strcmp(cmd, "export") == 0)
         //     ft_export(list_env);
         add_history(cmd);
-        // printf("%s\n", cmd);
     }
     return (0);
 }
