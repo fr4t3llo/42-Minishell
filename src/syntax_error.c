@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/15 17:48:24 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/16 02:40:31 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,32 @@ int ft_check_redirection(char *cmd)
 	return (1);
 }
 
-// int ft_nothing(char *cmd)
-// {
-// 	int i;
-
-// 	i = 0;
+int ft_check_red(char *cmd)
+{
+	int i;
+	int x;
+	char **tab;
 	
-// }
+	i = 0;
+	tab = ft_split(cmd, ' ');
+	if (ft_check_cmd_sq_q(cmd) == 1)
+	{
+		while (tab[i])
+			i++;
+		i--;
+		x = ft_strlen(tab[i]) - 1;
+		// printf("%s\n", tab[i]);
+		if (ft_strcmp(&tab[i][x], "<") == 0 || ft_strcmp(&tab[i][x], ">") == 0)
+			return (0);
+	}
+	return (1);
+}
+
 int ft_syntax_general(char *cmd)
 {
-	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0 || ft_check_redirection(cmd) == 0)
+	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0)
+		return (0);
+	else if (ft_check_redirection(cmd) == 0 || ft_check_red(cmd) == 0)
 		return (0);
 	else 
 		return (1);
