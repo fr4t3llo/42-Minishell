@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/16 00:33:10 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 03:54:13 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +114,18 @@ t_env *ft_new_env(char **env)
     return (new_env_list);
 }
 
-void    ft_bulletin(char *cmd)
+void    ft_bulletin(char *cmd, t_env *t)
 {
     if (ft_syntax_general(cmd) == 0)
         printf("Minishell : syntax error !!\n");
-    if (ft_strcmp(cmd, "pwd") == 0)
-        ft_pwd();
-    if (ft_strcmp(ft_get_cd(cmd), "cd") == 0)
-        ft_cd(cmd);
-    if (ft_strcmp(ft_get_cd(cmd), "exit") == 0)
-        ft_exit(cmd);
+    if (ft_strcmp(ft_execute_bulletin(cmd), "exit") == 0)
+            ft_exit(cmd);
+    if (ft_strcmp(ft_execute_bulletin(cmd), "pwd") == 0)
+            ft_pwd(cmd);
+    if (ft_strcmp(ft_execute_bulletin(cmd), "cd") == 0)
+            ft_cd(cmd);
+    if (ft_strcmp(ft_execute_bulletin(cmd), "env") == 0)
+            ft_env(t);
 }
 
 int main(int ac, char **av, char **env)
@@ -131,21 +133,26 @@ int main(int ac, char **av, char **env)
     (void)ac;
     (void)av;
     char *cmd;
+    char **nothing = NULL;
     t_env *list_env;
 
     list_env = ft_new_env(env);
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
+        nothing = ft_split(cmd, ' ');
+        // if (ft_strcmp(nothing[0], "") == 0)
+        //     continue;
         if (!cmd)
             break ; // free allocated memory
+            // printf("{%s}\n", nothing[0]);
         if (cmd[0] == '\0') {
             free(cmd);
             continue;
         }
         if (ft_strcmp(cmd, "env") == 0)
             ft_env(list_env);
-        ft_bulletin(cmd);
+        ft_bulletin(cmd, list_env);
         // if (ft_strcmp(cmd, "export") == 0)
         //     ft_export(list_env);
         add_history(cmd);

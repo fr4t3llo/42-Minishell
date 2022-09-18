@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/16 00:11:09 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 03:27:24 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 int var_global;
 
 //libft function
-size_t	ft_strlen(const char *str);
+int	ft_strlen(const char *str);
 
 // typedef struct s_token
 // {
@@ -87,6 +87,7 @@ void    ft_lstadd_back(t_list **alst, t_list *new);
 
 //minishell function
 void	ft_env(t_env *t);
+char    *ft_execute_bulletin(char *cmd);
 void    ft_pwd();
 void    ft_export(t_env *t);
 void    ft_cd(char *path);

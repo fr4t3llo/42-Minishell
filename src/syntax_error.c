@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/16 02:40:31 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 03:47:54 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,14 @@ int ft_check_red(char *cmd)
 	tab = ft_split(cmd, ' ');
 	if (ft_check_cmd_sq_q(cmd) == 1)
 	{
+		if (!tab[i])
+			return (0);
 		while (tab[i])
 			i++;
 		i--;
 		x = ft_strlen(tab[i]) - 1;
-		// printf("%s\n", tab[i]);
+		if (!tab[i][x])
+			return (0);
 		if (ft_strcmp(&tab[i][x], "<") == 0 || ft_strcmp(&tab[i][x], ">") == 0)
 			return (0);
 	}
