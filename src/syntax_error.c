@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/18 03:47:54 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 04:43:53 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,26 @@ int	ft_check_cmd_sq_q(char *cmd)
 	return (1);
 }	
 
+int	ft_check_semicolon(char *cmd)
+{
+	int i;
+
+	i = 0;
+	if (ft_check_cmd_sq_q(cmd) == 1)
+	{
+		while (cmd[i])
+		{
+			if (cmd[i] == '\\' || cmd[i] == ';' || cmd[i] == ':')
+				return (0);		
+			i++;
+		}
+	}
+	return (1);
+}
+
 int ft_check_pipe(char *cmd)
 {
 	int i;
-	// int pipe;
 	
 	i = 0;
 	if (ft_check_cmd_sq_q(cmd) == 1)
@@ -102,6 +118,8 @@ int ft_syntax_general(char *cmd)
 	if (ft_check_cmd_sq_q(cmd) == 0 || ft_check_pipe(cmd) == 0)
 		return (0);
 	else if (ft_check_redirection(cmd) == 0 || ft_check_red(cmd) == 0)
+		return (0);
+	else if (ft_check_semicolon(cmd) == 0)
 		return (0);
 	else 
 		return (1);

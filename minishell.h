@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/18 03:27:24 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 04:49:10 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ int	ft_check_cmd_sq_q(char *cmd);
 int ft_check_pipe(char *cmd);
 int ft_check_redirection(char *cmd);
 int ft_skip_before_space(char *cmd);
+int	ft_check_semicolon(char *cmd);
 int ft_syntax_general(char *cmd);
 
+// Expend
+int ft_expand(char *cmd);
 
 //libft_funcs
 char	**ft_split(char const *s, char c);

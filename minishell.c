@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/18 03:54:13 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/18 04:50:14 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int main(int ac, char **av, char **env)
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
+        ft_expand(cmd);
         nothing = ft_split(cmd, ' ');
         // if (ft_strcmp(nothing[0], "") == 0)
         //     continue;
