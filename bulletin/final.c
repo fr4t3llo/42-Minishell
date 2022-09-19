@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:46:47 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/17 19:50:02 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/19 02:30:31 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,4 @@ char    *ft_execute_bulletin(char *cmd)
     char **cmd2;
     cmd2 = ft_split(cmd, ' ');
     return (cmd2[0]);
-} 
+}

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/18 04:49:10 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/19 01:59:58 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-#include <string.h>
+# include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <./libc.h>
 
+# define pipe
+# define word
+# define red
+# define dbl_qt
+# define sngl_qt
 
 // global variable ***
 int var_global;
@@ -94,6 +99,7 @@ char    *ft_execute_bulletin(char *cmd);
 void    ft_pwd();
 void    ft_export(t_env *t);
 void    ft_cd(char *path);
+char *ft_get_home(t_env *t);
 int   	ft_exit(char *cmd);
 char	*ft_get_cd(char *cmd);
 
