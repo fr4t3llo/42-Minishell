@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/18 04:50:14 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/22 18:36:19 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,20 +128,37 @@ void    ft_bulletin(char *cmd, t_env *t)
             ft_env(t);
 }
 
+void    handle_signal(int sig)
+{
+    (void)sig;
+    // signal(SIGINT, NULL);
+    printf("FRATELLO😈=>\n");
+}
+
+
 int main(int ac, char **av, char **env)
 {
     (void)ac;
     (void)av;
     char *cmd;
-    char **nothing = NULL;
+    // char **nothing = NULL;
     t_env *list_env;
 
     list_env = ft_new_env(env);
+    struct sigaction sa;
+    sa.sa_handler = &handle_signal;
+    sa.sa_flags = SA_RESTART;
+    sigaction(SIGINT, &sa, NULL);
     while (1)
     {
         cmd = readline("FRATELLO😈=> ");
+        if (sigaction(SIGINT, &sa, NULL) == 1)
+        {
+            printf("wa hya sidi rebi\n");
+            continue;
+        }
         ft_expand(cmd);
-        nothing = ft_split(cmd, ' ');
+        // nothing = ft_split(cmd, ' ');
         // if (ft_strcmp(nothing[0], "") == 0)
         //     continue;
         if (!cmd)
@@ -151,8 +168,6 @@ int main(int ac, char **av, char **env)
             free(cmd);
             continue;
         }
-        if (ft_strcmp(cmd, "env") == 0)
-            ft_env(list_env);
         ft_bulletin(cmd, list_env);
         // if (ft_strcmp(cmd, "export") == 0)
         //     ft_export(list_env);

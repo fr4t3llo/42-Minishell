@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 17:55:31 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/22 16:50:31 by skasmi           ###   ########.fr       */
+/*   Created: 2022/09/21 00:06:04 by skasmi            #+#    #+#             */
+/*   Updated: 2022/09/21 17:35:22 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int   ft_exit(char *cmd)
+t_token *ft_get_token(char *str)
 {
-    char **splt;
-    splt = ft_split(cmd, ' ');
-    if (!splt[1])
-        exit(0);
-    else if (splt[1])
-        exit(ft_atoi(splt[1]));
-    return (1);
+    t_token *t;
+    char    *token;
+    int i;
+    int j;
+
+    j = 0;
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == '|' || str[i] == '<')
+        {
+            token[j] = str[i];
+            i++;
+            j++;
+        }   
+        else   
+    }
+    return (t);
 }

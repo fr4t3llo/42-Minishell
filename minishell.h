@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/19 01:59:58 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/22 18:06:52 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,30 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <./libc.h>
 
-# define pipe
-# define word
-# define red
-# define dbl_qt
-# define sngl_qt
-
+# define PIPE 1
+# define WORD 2
+# define RED_IN 3
+# define RED_OUT 4
+# define DBL 5
+# define SNGL 6
+# define HEREDOC 7
 // global variable ***
 int var_global;
 
 //libft function
 int	ft_strlen(const char *str);
 
-// typedef struct s_token
-// {
-//     int type;
-//     char value;
-//     s_token *next;
-// }   t_token
+typedef struct s_token
+{
+    int type;
+    char value;
+    struct s_token *next;
+}   t_token;
 
 typedef struct s_env
 {
