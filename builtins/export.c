@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 17:23:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/03 20:11:18 by skasmi           ###   ########.fr       */
+/*   Created: 2022/07/29 17:55:51 by skasmi            #+#    #+#             */
+/*   Updated: 2022/09/23 01:26:09 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// char buff[1024];
+// void    ft_export(char **environment)
+// {
 
-// if ((getcwd(buff, sizeof(buff))) == NULL)
-//     printf("Erroooor\n");
-// else 
-void    ft_pwd()
-{
-    printf("%s\n", getcwd(NULL, 0));
-}
+// }

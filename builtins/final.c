@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   final.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 17:55:31 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/22 16:50:31 by skasmi           ###   ########.fr       */
+/*   Created: 2022/09/17 19:46:47 by skasmi            #+#    #+#             */
+/*   Updated: 2022/09/23 01:25:36 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int   ft_exit(char *cmd)
+char	*ft_execute_bulletin(char *cmd)
 {
-    char **splt;
-    splt = ft_split(cmd, ' ');
-    if (!splt[1])
-        exit(0);
-    else if (splt[1])
-        exit(ft_atoi(splt[1]));
-    return (1);
+	char	**cmd2;
+
+	cmd2 = ft_split(cmd, ' ');
+	return (cmd2[0]);
 }
