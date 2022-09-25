@@ -6,12 +6,12 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/23 22:26:14 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/25 23:34:20 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror 
 
 NAME=minishell
 NAME2=minishell.h
@@ -33,7 +33,10 @@ SRCS=	minishell.c \
 		builtins/exit.c \
 		builtins/final.c \
 		src/syntax_error.c \
+		src/syntax_error2.c \
+		src/syntax_error_general.c \
 		src/expand.c \
+		src/ft_pipe.c \
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)

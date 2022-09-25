@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   syntax_error_general.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 05:19:43 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/05 03:57:13 by skasmi           ###   ########.fr       */
+/*   Created: 2022/09/23 23:43:46 by skasmi            #+#    #+#             */
+/*   Updated: 2022/09/24 22:40:39 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// # x = 4
-// # while x < 10:
-// #     x *= x/2
-// # print(x)
+#include "../minishell.h"
 
-#include <stdio.h>
-int main()
+int	ft_syntax_general(char *cmd)
 {
-    int x;
-
-    x = 4;
-    while (x < 10)
-    {
-        x *= x / 2;
-    }
-    printf("%d\n", x);
+	if (ft_check_red(cmd) == 1)
+		return (1);
+	if (ft_check_pipe(cmd) == 1)
+		return (1);
+	if (ft_check_before_after_symbole(cmd) == 1)
+		return (1);
+	if (ft_check_single_dbl_qt(cmd) == 1)
+		return (1);
+	return (0);
 }
