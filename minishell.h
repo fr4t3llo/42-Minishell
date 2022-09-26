@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/25 23:32:50 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/26 22:40:00 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,21 @@
 # define SNGL 6
 # define HEREDOC 7
 // global variable ***
-// int	g_var;
+
+typedef struct s_env
+{
+	char			*data;
+	char			*value;
+	struct s_env	*next;
+	struct s_env	*prev;
+}	t_env;
+
+typedef	struct	s_global_var
+{
+	t_env	*env;
+} t_global_var;
+
+t_global_var g_var;
 
 //libft function
 int	ft_strlen(const char *str);
@@ -42,13 +56,6 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-typedef struct s_env
-{
-	char			*data;
-	char			*value;
-	struct s_env	*next;
-	struct s_env	*prev;
-}	t_env;
 
 typedef struct s_int
 {
@@ -64,6 +71,13 @@ typedef struct s_list
 	char			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_pipe
+{
+	char	*cmd;
+	struct s_pipe *next;
+}	t_pipe;
+
 //syntax error **********************************
 
 // int	ft_check_parenthese(char *cmd);
@@ -90,18 +104,25 @@ int	ft_expand(char *cmd);
 //libft_funcs
 char	**ft_split(char const *s, char c);
 char	*ft_strcpy(char *dst, const char *src);
-int	ft_strcmp(char *s1, char *s2);
-int	ft_atoi(const char *str);
-int	ft_strchr(const char *s, int c);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_atoi(const char *str);
+int		ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s1);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_memmove(void *str1, const void *str2, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+
 //list env
 t_env	*ft_lstnew_env(char *data, char *value);
 void	ft_lst_addback_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
 //lists
+/*
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
-
+*/
 //minishell function
 void		ft_env(t_env *t);
 char		*ft_execute_bulletin(char *cmd);
@@ -109,8 +130,21 @@ void		ft_pwd();
 void		ft_export(t_env *t);
 void		ft_cd(char *path);
 char		*ft_get_home(t_env *t);
-int	ft_exit(char *cmd);
+int			ft_exit(char *cmd);
 char		*ft_get_cd(char *cmd);
-char	**ft_pipe(char *cmd);
+void		ft_pipe(char *cmd);
+int	ft_bulletin(char *cmd, t_env *t);
+
+
+// list of pipes
+
+void		ft_lstadd_back(t_pipe **lst, char *new);
+void		ft_lstadd_front(t_pipe **lst, t_pipe *new);
+t_pipe		*ft_lstlast(t_pipe *lst);
+t_pipe		*ft_lstnew(char *content);
+
+void   		ft_start_exe(t_pipe *lst);
+void   		ft_execution(char   *cmd);
+char		**ft_get_env2(void);
 
 #endif

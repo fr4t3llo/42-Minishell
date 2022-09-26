@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/25 23:38:59 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/26 22:37:29 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,59 +26,62 @@ t_env	*ft_new_env(char **env)
 		splt = ft_split(env[i], '=');
 		ft_lst_addback_env(&new_env_list, ft_lstnew_env(splt[0], splt[1]));
 		i++;
-		free(splt);
 	}
 	return (new_env_list);
 }
 
-void	ft_bulletin(char *cmd, t_env *t)
+int	ft_bulletin(char *cmd, t_env *t)
 {
 	if (ft_strcmp(ft_execute_bulletin(cmd), "exit") == 0)
-		ft_exit(cmd);
+		return (ft_exit(cmd), 1);
 	if (ft_strcmp(ft_execute_bulletin(cmd), "pwd") == 0)
-		ft_pwd(cmd);
+		return (ft_pwd(cmd), 1);
 	if (ft_strcmp(ft_execute_bulletin(cmd), "cd") == 0)
-		ft_cd(cmd);
+		return (ft_cd(cmd), 1);
 	if (ft_strcmp(ft_execute_bulletin(cmd), "env") == 0)
-		ft_env(t);
+		return (ft_env(t), 1);
+	return (0);
 }
 
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
-	t_env	*list_env;
-	char	**pipe;
+	int fd[2];
 
-	(void) ac;
+	fd[0] = dup(0);
+	fd[1] = dup(1);
 	(void) av;
-	list_env = ft_new_env(env);
-	int n = 0;
-	while (1)
+	if (ac == 1)
 	{
-		cmd = readline("\033[37mFRATELLO😈=> ");
-		if (cmd)
+		g_var.env = ft_new_env(env);
+		//int n = 0;
+		while (1)
 		{
-			add_history(cmd);
-		}
-		if (!cmd)
-			break ; // free allocated memory
-		if (cmd[0] == '\0')
-		{
-			free(cmd);
-			continue;
-		}
-		if (ft_syntax_general(cmd) == 1)
-			printf("\033[31mMinishell : syntax error !!!\n\033[37m");
-		else
-		{
-			pipe = ft_pipe(cmd);
-			while (n < 10)
+			cmd = readline("\033[37mFRATELLO😈=> ");
+			if (cmd)
 			{
-				printf("%s\n", pipe[n]);
-				n++;
+				add_history(cmd);
 			}
-			ft_bulletin(cmd, list_env);
+			if (!cmd)
+			 	break ; // free allocated memory
+			if (cmd[0] == '\0')
+				continue;
+			if (ft_syntax_general(cmd) == 1)
+				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
+			else
+			{
+				ft_pipe(cmd);
+				/*while (n < 10)
+				{
+					printf("%s\n", pipe[n]);
+					n++;
+				}*/
+			}
+			dup2(fd[0], 0);
+			dup2(fd[1], 1);
 		}
+		close(fd[0]);
+		close(fd[1]);
 	}
 	return (0);
 }

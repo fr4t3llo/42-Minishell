@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/25 23:34:20 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/26 21:27:57 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ SRCS=	minishell.c \
 		libft/ft_strcmp.c \
 		libft/ft_strchr.c \
 		libft/ft_atoi.c \
+		libft/ft_memmove.c \
+		libft/ft_strjoin.c \
+		libft/ft_substr.c \
+		libft/ft_strdup.c \
+		libft/ft_memcpy.c \
 		builtins/env.c \
 		builtins/export.c \
 		builtins/pwd.c \
@@ -37,6 +42,8 @@ SRCS=	minishell.c \
 		src/syntax_error_general.c \
 		src/expand.c \
 		src/ft_pipe.c \
+		src/lst_pipe.c \
+		src/execution.c
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)
@@ -45,7 +52,7 @@ OBJCTS=$(SRCS:%.c=%.o)
 
 $(NAME) : $(OBJCTS) $(NAME2)
 
-		$(CC) $(CFLAGS) $(OBJCTS) -lreadline -o $(NAME) 
+		$(CC) $(CFLAGS) $(OBJCTS) -lreadline -o $(NAME)
 				
 		@echo "\033[90m███╗░░░███╗██╗███╗░░██╗██╗░██████╗██╗░░██╗███████╗██╗░░░░░██╗░░░░░\033[0m" 
 		@echo "\033[90m████╗░████║██║████╗░██║██║██╔════╝██║░░██║██╔════╝██║░░░░░██║░░░░░\033[0m"
