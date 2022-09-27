@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/26 22:37:29 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/27 23:57:42 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,31 @@ int	ft_bulletin(char *cmd, t_env *t)
 		return (ft_cd(cmd), 1);
 	if (ft_strcmp(ft_execute_bulletin(cmd), "env") == 0)
 		return (ft_env(t), 1);
+	if (ft_strcmp(ft_execute_bulletin(cmd), "unset") == 0)
+		return (ft_unset(cmd), 1);
 	return (0);
 }
 
+
+/**
+ *  to do list
+	expand // need to be fixed
+	convert comand to lowercase LS=>ls
+	extract comand from dqoutes "l""s" => ls
+	heredoc
+	echo 
+	export
+	exuction
+	
+ * 
+ */
+
+
+/**
+ * 
+ * 
+ *  
+ */
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
@@ -51,6 +73,7 @@ int	main(int ac, char **av, char **env)
 	fd[0] = dup(0);
 	fd[1] = dup(1);
 	(void) av;
+	t_env *t = NULL;
 	if (ac == 1)
 	{
 		g_var.env = ft_new_env(env);
@@ -58,24 +81,17 @@ int	main(int ac, char **av, char **env)
 		while (1)
 		{
 			cmd = readline("\033[37mFRATELLO😈=> ");
-			if (cmd)
-			{
-				add_history(cmd);
-			}
 			if (!cmd)
 			 	break ; // free allocated memory
 			if (cmd[0] == '\0')
 				continue;
+			add_history(cmd);
 			if (ft_syntax_general(cmd) == 1)
 				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
 			else
 			{
+				ft_bulletin(cmd, t);
 				ft_pipe(cmd);
-				/*while (n < 10)
-				{
-					printf("%s\n", pipe[n]);
-					n++;
-				}*/
 			}
 			dup2(fd[0], 0);
 			dup2(fd[1], 1);

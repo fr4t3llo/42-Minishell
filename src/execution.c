@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/26 22:37:55 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/27 23:52:17 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    ft_start_exe(t_pipe *lst)
 				close(fd[0]);
 			}
         	ft_execution(tmp->cmd);
-			printf("\033[31mcommand not found\n");
+			//printf("\033[31mcommand not found\n");
 			exit (127);
 		}
 		else
@@ -81,19 +81,82 @@ void    ft_start_exe(t_pipe *lst)
     }    
 }
 
+void	ft_get_args_and_red(char *cmd, t_args **lst_of_args)
+{
+	t_args	*tmp;
+	int		i;
+	int		j;
+	char	c;
+	
+	i = 0;
+	tmp = *lst_of_args;
+	while (cmd[i])
+	{
+		if (cmd[i] == '>' || cmd[i] == '<')
+		{
+			c = cmd[i];
+			while (cmd[i] && cmd[i] == ' ')
+				i++;
+			j = i;
+			while (cmd[i] && cmd[i] != ' ')
+				i++;
+			printf("%s\n", ft_substr(cmd, j, i - j + 1));
+		}
+		else if (cmd[i] != ' ')
+		{
+			j = i;
+			c = cmd[i];
+			while (cmd[i] && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<')
+			{
+				if (cmd[i] && ( cmd[i] == '\"' || cmd[i] == '\''))
+				{
+					c = cmd[i];
+					i++;
+					while (cmd[i] && ( cmd[i] != c))
+						i++;
+				}
+				i++;
+			}
+			printf("%s\n", ft_substr(cmd, j, i - j + 1));
+		}
+		i++;
+	}
+}
+
+// ls -la > file
+
+// ls => WOED
+// -la => WORD
+// file => R_OUT
+
+// IN lst_of_args 
+// wc => WORD 
+//-l => WORD
+
+// ===> CONVERT LST_OF_ARGS TO A ARRAY 2D
+
+// IN lst_of_RED
+// f => R_IN
+
+// ls -l
+
 void    ft_execution(char   *cmd)
 {
     char **single_path;
 	int		i;
-	char	**ptr;
-
+	//char	**ptr;
+	t_args	*lst_of_args;
+	
 	i = -1;
 	single_path = ft_split(getenv("PATH"), ':');
     
-	ptr = ft_split(cmd, ' ');
+	lst_of_args = NULL;
+	ft_get_args_and_red(cmd, &lst_of_args);
+
+	/*ptr = ft_split(cmd, ' ');
 
 	while (single_path[++i])
 	{
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
-	}
+	}*/
 }

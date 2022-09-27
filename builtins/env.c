@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:46:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/26 22:41:16 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/27 18:33:24 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	ft_env(t_env *t)
 {
-	t_env	*temp;
-
-	temp = t;
-	while (temp)
+	t = g_var.env;
+	while (t)
 	{
-		printf("%s=%s\n", temp->data, temp->value);
-		temp = temp->next;
+		printf("%s=%s\n", t->data, t->value);
+		t = t->next;
 	}
 }

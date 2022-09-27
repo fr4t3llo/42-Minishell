@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/26 21:27:57 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/27 18:25:02 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS=	minishell.c \
 		builtins/cd.c \
 		builtins/exit.c \
 		builtins/final.c \
+		builtins/unset.c \
 		src/syntax_error.c \
 		src/syntax_error2.c \
 		src/syntax_error_general.c \

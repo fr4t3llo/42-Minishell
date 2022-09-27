@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/26 22:40:00 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/27 23:14:43 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ typedef struct s_pipe
 	struct s_pipe *next;
 }	t_pipe;
 
+typedef struct s_args
+{
+	char			*arg;
+	char			*token;
+	struct s_args	*next;
+} t_args;
+
 //syntax error **********************************
 
 // int	ft_check_parenthese(char *cmd);
@@ -131,9 +138,10 @@ void		ft_export(t_env *t);
 void		ft_cd(char *path);
 char		*ft_get_home(t_env *t);
 int			ft_exit(char *cmd);
+void		ft_unset(char *cmd);
 char		*ft_get_cd(char *cmd);
 void		ft_pipe(char *cmd);
-int	ft_bulletin(char *cmd, t_env *t);
+int			ft_bulletin(char *cmd, t_env *t);
 
 
 // list of pipes
