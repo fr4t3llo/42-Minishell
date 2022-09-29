@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/27 23:14:43 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/09/29 00:03:38 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void		ft_unset(char *cmd);
 char		*ft_get_cd(char *cmd);
 void		ft_pipe(char *cmd);
 int			ft_bulletin(char *cmd, t_env *t);
+void   		ft_convert_to_lower(char *cmd);
 
 
 // list of pipes

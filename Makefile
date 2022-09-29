@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/27 18:25:02 by skasmi           ###   ########.fr        #
+#    Updated: 2022/09/29 00:07:14 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS=	minishell.c \
 		src/expand.c \
 		src/ft_pipe.c \
 		src/lst_pipe.c \
-		src/execution.c
+		src/execution.c \
+		utils.c
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)
