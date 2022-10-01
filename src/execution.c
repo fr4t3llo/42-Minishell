@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/29 02:45:08 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/01 23:57:07 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    ft_start_exe(t_pipe *lst)
     t_pipe *tmp;
 	int		fd[2];
 	int		pid;
+	int		status;
 
     tmp = lst;
 	if (lst->next == NULL)
@@ -64,26 +65,28 @@ void    ft_start_exe(t_pipe *lst)
 				close(fd[0]);
 			}
         	ft_execution(tmp->cmd);
-			//printf("\033[31mcommand not found\n");
 			exit (127);
 		}
-		else
+		if (tmp->cmd)
 		{
-			wait(NULL);
-			if (tmp->cmd)
-			{
-				dup2(fd[0], 0);
-				close(fd[0]);
-				close(fd[1]);
-			}
+			dup2(fd[0], 0);
+			close(fd[0]);
+			close(fd[1]);
 		}
-        tmp = tmp->next;
-    }    
+    	tmp = tmp->next;
+	}
+
+	while (1)
+		if (waitpid(-1, &status, 0) == -1)
+			break;
+
+	// chaeck status using macros here
+
 }
 
-void	ft_get_args_and_red(char *cmd, t_args **lst_of_args)
+void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
 {
-	t_args	*tmp;
+	t_pipe	*tmp;
 	int		i;
 	int		j;
 	char	c;
@@ -95,17 +98,22 @@ void	ft_get_args_and_red(char *cmd, t_args **lst_of_args)
 		if (cmd[i] == '>' || cmd[i] == '<')
 		{
 			c = cmd[i];
+			i++;
+			if (cmd[i] == c)
+			{
+				i++;
+				c = 'a';
+			}
 			while (cmd[i] && cmd[i] == ' ')
 				i++;
 			j = i;
 			while (cmd[i] && cmd[i] != ' ')
 				i++;
-			printf("%s\n", ft_substr(cmd, j, i - j + 1));
+			ft_lstadd_back_red(lst_of_red, ft_substr(cmd, j, i - j + 1), c);
 		}
 		else if (cmd[i] != ' ')
 		{
 			j = i;
-			c = cmd[i];
 			while (cmd[i] && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<')
 			{
 				if (cmd[i] && ( cmd[i] == '\"' || cmd[i] == '\''))
@@ -117,46 +125,66 @@ void	ft_get_args_and_red(char *cmd, t_args **lst_of_args)
 				}
 				i++;
 			}
-			printf("%s\n", ft_substr(cmd, j, i - j + 1));
+			ft_lstadd_back(lst_of_args, ft_substr(cmd, j, i - j));
 		}
 		i++;
 	}
 }
 
-// ls -la > file
+int	size_of_lst(t_pipe *lst_of_args)
+{
+	t_pipe	*tmp;
+	int		i;
 
-// ls => WOED
-// -la => WORD
-// file => R_OUT
+	i = 0;
+	tmp = lst_of_args;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
 
-// IN lst_of_args 
-// wc => WORD 
-//-l => WORD
+char	**args_lst_to_tab(t_pipe *lst_of_args)
+{
 
-// ===> CONVERT LST_OF_ARGS TO A ARRAY 2D
-
-// IN lst_of_RED
-// f => R_IN
-
-// ls -l
+	int		len;
+	char	**args;
+	t_pipe	*tmp;
+	int		i;
+	
+	len = size_of_lst(lst_of_args);
+	args = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!args)
+		return NULL;
+	i = 0;
+	tmp = lst_of_args;
+	while (tmp)
+	{
+		args[i++] = tmp->cmd;	
+		tmp = tmp->next;
+	}
+	args[i] = NULL;
+	return (args);
+}
 
 void    ft_execution(char   *cmd)
 {
+	t_pipe	*lst_of_args;
+	t_redic	*lst_of_red;
     char **single_path;
+	char	**ptr;
 	int		i;
-	//char	**ptr;
-	t_args	*lst_of_args;
 	
+	lst_of_args = NULL;
+	lst_of_red	= 	NULL;
+	ft_get_args_and_red(cmd, &lst_of_args, &lst_of_red);
+	ptr = args_lst_to_tab(lst_of_args);
 	i = -1;
 	single_path = ft_split(getenv("PATH"), ':');
-    
-	lst_of_args = NULL;
-	ft_get_args_and_red(cmd, &lst_of_args);
-
-	/*ptr = ft_split(cmd, ' ');
-
 	while (single_path[++i])
-	{
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
-	}*/
+
+	exit (0);
 }

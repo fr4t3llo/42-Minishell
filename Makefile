@@ -6,7 +6,7 @@
 #    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/09/29 00:07:14 by skasmi           ###   ########.fr        #
+#    Updated: 2022/10/01 22:55:55 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS=	minishell.c \
 		libft/ft_substr.c \
 		libft/ft_strdup.c \
 		libft/ft_memcpy.c \
+		libft/ft_putstr_fd.c \
 		builtins/env.c \
 		builtins/export.c \
 		builtins/pwd.c \
@@ -45,7 +46,8 @@ SRCS=	minishell.c \
 		src/ft_pipe.c \
 		src/lst_pipe.c \
 		src/execution.c \
-		utils.c
+		utils.c \
+		src/redirection.c
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)

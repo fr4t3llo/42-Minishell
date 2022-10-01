@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/29 00:20:24 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/01 22:39:47 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int ac, char **av, char **env)
 	fd[1] = dup(1);
 	(void) av;
 	t_env *t = NULL;
+	
 	if (ac == 1)
 	{
 		g_var.env = ft_new_env(env);
@@ -84,12 +85,9 @@ int	main(int ac, char **av, char **env)
 			if (!cmd)
 			 	break ; // free allocated memory
 			if (cmd[0] == '\0')
-			{
-				free(cmd);
 				continue;
-			}
 			add_history(cmd);
-			ft_convert_to_lower(cmd);
+			//ft_convert_to_lower(cmd);
 			if (ft_syntax_general(cmd) == 1)
 				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
 			else

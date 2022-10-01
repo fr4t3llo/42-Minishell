@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/29 00:03:38 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/01 23:26:18 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define WORD 2
 # define RED_IN 3
 # define RED_OUT 4
-# define DBL 5
-# define SNGL 6
-# define HEREDOC 7
+# define APPEND 5
+# define DBL 6
+# define SNGL 7
 // global variable ***
 
 typedef struct s_env
@@ -77,6 +77,13 @@ typedef struct s_pipe
 	char	*cmd;
 	struct s_pipe *next;
 }	t_pipe;
+
+typedef struct s_redic
+{
+	char 			*content;
+	int				type;
+	struct s_redic *next;	
+} t_redic;
 
 typedef struct s_args
 {
@@ -155,5 +162,11 @@ t_pipe		*ft_lstnew(char *content);
 void   		ft_start_exe(t_pipe *lst);
 void   		ft_execution(char   *cmd);
 char		**ft_get_env2(void);
+
+
+void	ft_lstadd_back_red(t_redic **lst, char *new, char c);
+void	ft_lstadd_front_red(t_redic **lst, t_redic *new);
+t_redic	*ft_lstlast_red(t_redic *lst);
+t_redic	*ft_lstnew_red(char *content, char c);
 
 #endif
