@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/01 23:26:18 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/02 23:45:34 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef	struct	s_global_var
 
 t_global_var g_var;
 
-//libft function
+//libft function  
 int	ft_strlen(const char *str);
 
 typedef struct s_token
