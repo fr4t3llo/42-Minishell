@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/01 22:39:47 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/03 00:54:11 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int ac, char **av, char **env)
 		//int n = 0;
 		while (1)
 		{
-			cmd = readline("\033[37mFRATELLO😈=> ");
+			cmd = readline("\033[31mFRATELLO😈=> ");
 			if (!cmd)
 			 	break ; // free allocated memory
 			if (cmd[0] == '\0')
@@ -92,6 +92,7 @@ int	main(int ac, char **av, char **env)
 				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
 			else
 			{
+				continue;
 				ft_bulletin(cmd, t);
 				ft_pipe(cmd);
 			}
@@ -103,3 +104,8 @@ int	main(int ac, char **av, char **env)
 	}
 	return (0);
 }
+
+
+
+
+

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
+#    By: matef <matef@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/10/01 22:55:55 by skasmi           ###   ########.fr        #
+#    Updated: 2022/10/03 00:37:12 by matef            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRCS=	minishell.c \
 		src/lst_pipe.c \
 		src/execution.c \
 		utils.c \
-		src/redirection.c
+		src/redirection.c \
+		src/open_files.c
 	
 
 BOBJCTS=$(BSRCS:%.c=%.o)

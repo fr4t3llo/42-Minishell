@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 21:17:45 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/01 23:04:38 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/02 23:56:33 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	skip_and_copy(char *line, int *k)
 	}
 	*k = i;
 }
-
 
 void	ft_pipe(char *cmd)
 {

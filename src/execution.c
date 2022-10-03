@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/01 23:57:07 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/03 00:27:49 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char **ft_get_env2(void)
 	ptr[i] = NULL;
 	return (ptr);
 }
+
 void    ft_start_exe(t_pipe *lst)
 {
     t_pipe *tmp;
@@ -169,6 +170,7 @@ char	**args_lst_to_tab(t_pipe *lst_of_args)
 	return (args);
 }
 
+
 void    ft_execution(char   *cmd)
 {
 	t_pipe	*lst_of_args;
@@ -180,8 +182,17 @@ void    ft_execution(char   *cmd)
 	lst_of_args = NULL;
 	lst_of_red	= 	NULL;
 	ft_get_args_and_red(cmd, &lst_of_args, &lst_of_red);
+
+	// protect if not cmd
+	
 	ptr = args_lst_to_tab(lst_of_args);
 	i = -1;
+
+	if (lst_of_red)
+	{
+		run_rediction(lst_of_red);
+	}
+
 	single_path = ft_split(getenv("PATH"), ':');
 	while (single_path[++i])
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
