@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/03 00:04:48 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/05 19:39:43 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,5 @@ t_redic	*ft_lstnew_red(char *content, char c);
 // handle redirection
 
 void	run_rediction(t_redic *lst_of_red);
-
+void	ft_putstr_fd(char *s, int fd);
 #endif

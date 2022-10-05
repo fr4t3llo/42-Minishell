@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/03 00:27:49 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/05 20:25:00 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,18 @@ void    ft_start_exe(t_pipe *lst)
 				close(fd[0]);
 			}
         	ft_execution(tmp->cmd);
-			exit (127);
 		}
 		if (tmp->cmd)
 		{
+			ft_putstr_fd("hello 455\n", 2);
 			dup2(fd[0], 0);
 			close(fd[0]);
 			close(fd[1]);
+		}
+		else
+		{
+			ft_putstr_fd("hello\n", 2);
+			close(0);
 		}
     	tmp = tmp->next;
 	}
@@ -108,8 +113,10 @@ void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
 			while (cmd[i] && cmd[i] == ' ')
 				i++;
 			j = i;
-			while (cmd[i] && cmd[i] != ' ')
+			while (cmd[i] && !ft_strchr(" ><", cmd[i]))//  cmd[i] != ' ')
 				i++;
+			if (cmd[i])
+				i--;
 			ft_lstadd_back_red(lst_of_red, ft_substr(cmd, j, i - j + 1), c);
 		}
 		else if (cmd[i] != ' ')
@@ -170,6 +177,12 @@ char	**args_lst_to_tab(t_pipe *lst_of_args)
 	return (args);
 }
 
+void	ft_puterror(char *err)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(err, 2);
+	ft_putstr_fd(":command not found\n", 2);
+}
 
 void    ft_execution(char   *cmd)
 {
@@ -189,13 +202,12 @@ void    ft_execution(char   *cmd)
 	i = -1;
 
 	if (lst_of_red)
-	{
 		run_rediction(lst_of_red);
-	}
 
 	single_path = ft_split(getenv("PATH"), ':');
 	while (single_path[++i])
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
 
-	exit (0);
+	ft_puterror(ptr[0]);
+	exit (127);
 }
