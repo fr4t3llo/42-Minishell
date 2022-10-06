@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/04 12:45:41 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/06 21:08:23 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_bulletin(char *cmd, t_env *t)
 		return (ft_env(t), 1);
 	if (ft_strcmp(ft_execute_bulletin(cmd), "unset") == 0)
 		return (ft_unset(cmd), 1);
+	if (ft_strcmp(ft_execute_bulletin(cmd), "export") == 0)
+		return (ft_export(cmd), 1);
 	return (0);
 }
 
@@ -94,7 +96,7 @@ int	main(int ac, char **av, char **env)
 			{
 				// continue;
 				ft_bulletin(cmd, t);
-				ft_pipe(cmd);
+				// ft_pipe(cmd);
 			}
 			dup2(fd[0], 0);
 			dup2(fd[1], 1);

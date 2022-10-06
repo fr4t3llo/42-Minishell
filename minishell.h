@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/05 19:39:43 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:45:58 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,9 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 void		ft_env(t_env *t);
 char		*ft_execute_bulletin(char *cmd);
 void		ft_pwd();
-void		ft_export(t_env *t);
+void		ft_export(char *cmd);
+void *ft_get_data(char *cmd);
+char	*ft_get_value(char *cmd);
 void		ft_cd(char *path);
 char		*ft_get_home(t_env *t);
 int			ft_exit(char *cmd);

@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:56:16 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/27 22:49:01 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/06 21:10:49 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void ft_unset(char *cmd)
     char    **splt;
     t_env   *tmp_next;
     t_env   *tmp_prev;
-    int i;
-    t_env *tmp;
+    int     i;
+    t_env   *tmp;
 
     i = 1;
     tmp = g_var.env;
     splt = ft_split(cmd, ' ');
-	tmp = g_var.env;
+	// tmp = g_var.env;
     while (splt[i])
     {
         tmp = g_var.env;
