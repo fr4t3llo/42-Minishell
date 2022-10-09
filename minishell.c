@@ -3,53 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/06 21:08:23 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/09 21:47:53 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*ft_new_env(char **env)
+
+
+void	ft_new_env(char **env)
 {
-	t_env	*new_env_list;
+	t_env	**new_env;
 	char	**splt;
 	int		i;
 
-	new_env_list = NULL;
-
+	g_var.env = NULL;
+	new_env = &g_var.env;
 	i = 0;
 	while (env[i])
 	{
 		splt = ft_split(env[i], '=');
-		ft_lst_addback_env(&new_env_list, ft_lstnew_env(splt[0], splt[1]));
+		ft_lst_addback_env(new_env, ft_lstnew_env(splt[0], splt[1]));
 		i++;
 	}
-	return (new_env_list);
 }
 
-int	ft_bulletin(char *cmd, t_env *t)
+int	ft_bulletin(char *cmd)
 {
-	if (ft_strcmp(ft_execute_bulletin(cmd), "exit") == 0)
-		return (ft_exit(cmd), 1);
-	if (ft_strcmp(ft_execute_bulletin(cmd), "pwd") == 0)
-		return (ft_pwd(cmd), 1);
-	if (ft_strcmp(ft_execute_bulletin(cmd), "cd") == 0)
-		return (ft_cd(cmd), 1);
-	if (ft_strcmp(ft_execute_bulletin(cmd), "env") == 0)
-		return (ft_env(t), 1);
-	if (ft_strcmp(ft_execute_bulletin(cmd), "unset") == 0)
-		return (ft_unset(cmd), 1);
-	if (ft_strcmp(ft_execute_bulletin(cmd), "export") == 0)
-		return (ft_export(cmd), 1);
+
+	t_pipe	*lst_of_args;
+	t_redic	*lst_of_red;
+	char	**ptr;
+
+	lst_of_args = NULL;
+	lst_of_red = NULL;
+	ft_get_args_and_red(cmd, &lst_of_args, &lst_of_red);
+	if (lst_of_red)
+		run_rediction(lst_of_red);
+	ptr = args_lst_to_tab(lst_of_args);
+	/*
+		if (ft_strcmp(ptr[0], "exit") == 0)
+			return (ft_exit(ptr[0]), 1);
+		if (ft_strcmp(ptr[0], "pwd") == 0)
+			return (ft_pwd(ptr[0]), 1);
+		if (ft_strcmp(ptr[0], "env") == 0)
+			return (ft_env(t), 1);
+	*/
+
+	if (ft_strcmp(ptr[0], "cd") == 0)
+		return (ft_cd(ptr[1]), 1);
+	else if (ft_strcmp(ptr[0], "env") == 0)
+			return (ft_env(), 1);
+	else if (ft_strcmp(ptr[0], "unset") == 0)
+		return (ft_unset_more_then_one(ptr), 1);
+	else if (ft_strcmp(ptr[0], "export") == 0)
+		return (ft_export(ptr), 1);
 	return (0);
 }
 
 
 /**
- *  to do list 
+	to do list 
 	expand // need to be fixed
 	convert comand to lowercase LS=>ls
 	extract comand from dqoutes "l""s" => ls
@@ -57,30 +74,61 @@ int	ft_bulletin(char *cmd, t_env *t)
 	echo 
 	export
 	exuction
-	
- * 
  */
 
 
 /**
  * 
  * 
- *  
+ * export -------> done
+ * exucution --------> done
+ * 
+ * 
  */
+
+
+
+/**
+ *  # error need to be fixed in bultins
+ * 
+ * 
+ *  
+ * ## builtins errors
+ * echo with -nnnnnnnnnn
+ * unset with multipe var // remove the middle one
+ * cd error // when remove courent folder
+ * pwd error // when can't find .
+ * 
+ * 
+ * 
+ * ## bultins finished
+ * ---> export
+*/
+	
+
+/**
+ * # syntax errors
+ * 
+ * <<< // must be handle
+ * echo "'   << >     |"| // syntax error
+ * |" d" // syntax error
+ * 
+ * 
+*/
+
+
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
-	int fd[2];
+	int		fd[2];
 
 	fd[0] = dup(0);
 	fd[1] = dup(1);
 	(void) av;
-	t_env *t = NULL;
-	
 	if (ac == 1)
 	{
-		g_var.env = ft_new_env(env);
-		//int n = 0;
+		ft_new_env(env);
 		while (1)
 		{
 			cmd = readline("\033[37mFRATELLO😈=> ");
@@ -89,14 +137,12 @@ int	main(int ac, char **av, char **env)
 			if (cmd[0] == '\0')
 				continue;
 			add_history(cmd);
-			//ft_convert_to_lower(cmd);
 			if (ft_syntax_general(cmd) == 1)
 				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
 			else
 			{
 				// continue;
-				ft_bulletin(cmd, t);
-				// ft_pipe(cmd);
+				ft_pipe(cmd);
 			}
 			dup2(fd[0], 0);
 			dup2(fd[1], 1);
@@ -106,8 +152,6 @@ int	main(int ac, char **av, char **env)
 	}
 	return (0);
 }
-
-
 
 
 

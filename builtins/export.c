@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/06 22:53:41 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/09 11:39:06 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 char	*ft_get_value(char *cmd)
 {
 	int 	i;
@@ -47,53 +47,72 @@ char	*ft_get_value(char *cmd)
 
 void *ft_get_data(char *cmd)
 {
+	char *str;
 	int i;
 	int j;
-	char str[9999];
 	
 	i = 0;
-	j = 0;
 	while (cmd[i] != '=' && cmd[i])
 	{
 		str[j] = cmd[i];
 		i++;
-		j++; 		
 	}
 	str[j] = '\0';
 	return (ft_strdup(str));
 }
 
-void	ft_export(char *cmd)
-{
-    t_env	*tmp;
-    int		i;
-    char	**splt;
-	char	*value;
-	char	*data;
+*/
 
-	i = 0;
+char	*get_from_env(char *var)
+{
+	t_env	*tmp;
+
 	tmp = g_var.env;
-    splt = ft_split(cmd, ' ');
-	if (!splt)
-		return ;
-	data = ft_get_data(splt[1]);
-	value = ft_get_value(splt[1]);
-	t_env *new = (t_env*)malloc(sizeof(t_env));
-	new->data = data;
-	new->value = value;
-	new->next = NULL;
-	while (tmp) 
+	while (tmp)
 	{
-		if (tmp->next == NULL)
-			break;
+		if (!ft_strcmp(var, tmp->data))
+			return tmp->value;
 		tmp = tmp->next;
 	}
-	tmp->next = new;
-	new->prev = tmp;
+	return NULL;
 }
 
-// int main()
-// {
-// 	char *str = "user============ftsplit";
-// 	printf("%s\n", ft_get_value(str));
-// }
+void	ft_export(char **cmd)
+{
+	t_env	*tmp;
+
+	tmp = g_var.env;
+	char *val;
+	char *var;
+	int len;
+	int i = 1;
+
+	while (cmd[i])
+	{
+		char *to_exp = cmd[i];
+		if (ft_strstr(to_exp, "="))
+		{
+			val = ft_strstr(to_exp, "=") + 1;
+			len = ft_strlen(to_exp) - ft_strlen(val) - 1;
+			var = ft_substr(to_exp, 0, len);
+
+			if (var[ft_strlen(var) - 1] == '+')
+			{
+				var = ft_substr(var, 0, ft_strlen(var) - 1);
+				val = ft_strjoin(get_from_env(var), val);
+			}
+			ft_unset(var);
+			t_env *new = (t_env*)malloc(sizeof(t_env));
+			if (!new)
+				return ;
+			new->data = var;
+			new->value = val;
+			new->next = NULL;
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = new;
+			new->prev = tmp;
+		}
+		i++;
+	}
+}

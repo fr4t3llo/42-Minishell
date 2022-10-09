@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:00 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/09 12:50:04 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    ft_start_exe(t_pipe *lst)
 
     tmp = lst;
 	if (lst->next == NULL)
-		if (ft_bulletin(lst->cmd, g_var.env))
+		if (ft_bulletin(lst->cmd))
 			return ;
     while (tmp)
     {
@@ -56,7 +56,11 @@ void    ft_start_exe(t_pipe *lst)
 			pipe(fd);
 		pid = fork();
 		if (pid < 0)
-			printf("\033[31mdefault msg error should be here\n");
+		{
+			ft_puterror("fork", ": Resource temporarily unavailable\n");
+			// set 1 global varibal status here
+			return ;	
+		}
 		if (pid == 0)
 		{
 			if (tmp->next)
@@ -67,27 +71,20 @@ void    ft_start_exe(t_pipe *lst)
 			}
         	ft_execution(tmp->cmd);
 		}
-		if (tmp->cmd)
+		if (tmp->next)
 		{
-			ft_putstr_fd("hello 455\n", 2);
 			dup2(fd[0], 0);
 			close(fd[0]);
 			close(fd[1]);
 		}
 		else
-		{
-			ft_putstr_fd("hello\n", 2);
-			close(0);
-		}
+			close (0);
     	tmp = tmp->next;
 	}
-
 	while (1)
 		if (waitpid(-1, &status, 0) == -1)
 			break;
-
 	// chaeck status using macros here
-
 }
 
 void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
@@ -177,11 +174,11 @@ char	**args_lst_to_tab(t_pipe *lst_of_args)
 	return (args);
 }
 
-void	ft_puterror(char *err)
+void	ft_puterror(char *err, char *msg)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(err, 2);
-	ft_putstr_fd(":command not found\n", 2);
+	ft_putstr_fd(msg, 2);
 }
 
 void    ft_execution(char   *cmd)
@@ -208,6 +205,6 @@ void    ft_execution(char   *cmd)
 	while (single_path[++i])
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
 
-	ft_puterror(ptr[0]);
+	ft_puterror(ptr[0], ":command not found\n");
 	exit (127);
 }

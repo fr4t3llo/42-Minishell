@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
+#    By: matef <matef@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/10/06 22:46:52 by skasmi           ###   ########.fr        #
+#    Updated: 2022/10/07 16:27:31 by matef            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=gcc
+CC=cc
 CFLAGS=-Wall -Wextra -Werror 
 
 NAME=minishell
@@ -32,6 +32,7 @@ SRCS=	minishell.c \
 		libft/ft_strdup.c \
 		libft/ft_memcpy.c \
 		libft/ft_putstr_fd.c \
+		libft/ft_strnstr.c \
 		builtins/env.c \
 		builtins/export.c \
 		builtins/pwd.c \

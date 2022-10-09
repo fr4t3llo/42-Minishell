@@ -3,49 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:56:16 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/06 21:10:49 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/09 22:18:07 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void ft_unset(char *cmd)
+void    ft_unset_more_then_one(char **ptr)
 {
-    char    **splt;
-    t_env   *tmp_next;
-    t_env   *tmp_prev;
-    int     i;
-    t_env   *tmp;
+    int i;
 
     i = 1;
-    tmp = g_var.env;
-    splt = ft_split(cmd, ' ');
-	// tmp = g_var.env;
-    while (splt[i])
+    while (ptr[i])
     {
-        tmp = g_var.env;
-        while (tmp)
-        {
-            if(ft_strcmp(splt[i], tmp->data) == 0)
-            {
-                if (tmp->prev == NULL)
-                {
-                    g_var.env = g_var.env->next;
-                    if (!g_var.env)
-                        g_var.env->prev = NULL;
-                    break;
-                }
-                tmp_next = tmp->next;
-                tmp_prev = tmp->prev;
-                free(tmp->data);
-                tmp_prev->next = tmp_next;
-                break;
-            }     
-            tmp = tmp->next;
-        }
+        ft_unset(ptr[i]);
         i++;
+    }
+}
+
+void ft_unset(char *cmd)
+{
+    int     i;
+    t_env   *tmp_prev;
+    t_env   *tmp;
+
+    i = 0;
+    tmp = g_var.env;
+    if (tmp->next)
+    {
+        tmp_prev = tmp;
+               
+    }
+    while (tmp)
+    {
+
+        if (i = 0 && ft_strcmp(cmd, tmp->data) == 0)
+        {
+            g_var.env = g_var.env->next;
+            break;
+        }
+        else if (tmp->next)
+        {
+            
+            if(ft_strcmp(cmd, tmp->next->data) == 0)
+            {
+               
+                tmp_prev = tmp->next;
+                tmp_prev->next = tmp_prev;
+                break;
+            }
+        }
+        i = 1;
+        tmp = tmp->next;
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/06 22:45:58 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/09 22:09:41 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_env
 	char			*data;
 	char			*value;
 	struct s_env	*next;
-	struct s_env	*prev;
+	// struct s_env	*prev;
 }	t_env;
 
 typedef	struct	s_global_var
@@ -133,24 +133,25 @@ void	ft_lst_addback_env(t_env **lst, t_env *new);
 t_env	*ft_lstlast_env(t_env *lst);
 //lists
 /*
-t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **alst, t_list *new);
+	t_list	*ft_lstnew(void *content);
+	t_list	*ft_lstlast(t_list *lst);
+	void	ft_lstadd_back(t_list **alst, t_list *new);
 */
 //minishell function
-void		ft_env(t_env *t);
+void		ft_env(void);
 char		*ft_execute_bulletin(char *cmd);
 void		ft_pwd();
-void		ft_export(char *cmd);
-void *ft_get_data(char *cmd);
-char	*ft_get_value(char *cmd);
+void		ft_export(char **cmd);
+void 		*ft_get_data(char *cmd);
+char		*ft_get_value(char *cmd);
 void		ft_cd(char *path);
 char		*ft_get_home(t_env *t);
 int			ft_exit(char *cmd);
 void		ft_unset(char *cmd);
+void    ft_unset_more_then_one(char **ptr);
 char		*ft_get_cd(char *cmd);
 void		ft_pipe(char *cmd);
-int			ft_bulletin(char *cmd, t_env *t);
+int			ft_bulletin(char *cmd);
 void   		ft_convert_to_lower(char *cmd);
 
 
@@ -176,4 +177,15 @@ t_redic	*ft_lstnew_red(char *content, char c);
 
 void	run_rediction(t_redic *lst_of_red);
 void	ft_putstr_fd(char *s, int fd);
+
+char	*ft_strstr(char *haystack, char *needle);
+
+
+char	**args_lst_to_tab(t_pipe *lst_of_args);
+void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red);
+
+
+void	ft_puterror(char *err, char *msg);
+
+
 #endif
