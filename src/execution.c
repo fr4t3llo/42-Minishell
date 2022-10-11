@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/09 12:50:04 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/11 16:52:04 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void    ft_execution(char   *cmd)
 	if (lst_of_red)
 		run_rediction(lst_of_red);
 
+	ft_convert_to_lower(ptr[0]);
 	single_path = ft_split(getenv("PATH"), ':');
 	while (single_path[++i])
     	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());

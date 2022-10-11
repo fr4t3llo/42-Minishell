@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:46:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/07 16:27:12 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/11 18:45:33 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_env()
 	env = g_var.env;
 	while (env)
 	{
-		printf("%s=%s\n", env->data, env->value);
+		if (env->value)
+			printf("%s=%s\n", env->data, env->value);
 		env = env->next;
 	}
 }

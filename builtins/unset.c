@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:56:16 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/09 22:18:07 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/11 18:04:59 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,21 @@ void    ft_unset_more_then_one(char **ptr)
     }
 }
 
+/*
 void ft_unset(char *cmd)
 {
-    int     i;
     t_env   *tmp_prev;
     t_env   *tmp;
 
-    i = 0;
     tmp = g_var.env;
     if (tmp->next)
     {
         tmp_prev = tmp;
-               
     }
     while (tmp)
     {
 
-        if (i = 0 && ft_strcmp(cmd, tmp->data) == 0)
+        if (ft_strcmp(cmd, tmp->data) == 0)
         {
             g_var.env = g_var.env->next;
             break;
@@ -56,7 +54,48 @@ void ft_unset(char *cmd)
                 break;
             }
         }
-        i = 1;
         tmp = tmp->next;
+    }
+}
+*/
+
+
+
+void ft_unset(char *cmd)
+{
+    t_env   *tmp_next;
+    t_env   *tmp_prev;
+    t_env   *tmp;
+
+    tmp = g_var.env;
+    if (tmp && tmp->next == NULL && tmp->prev == NULL)
+    {
+        if(ft_strcmp(cmd, tmp->data) == 0)
+            g_var.env = NULL;
+        return ;
+    }
+    
+    while (tmp)
+    {
+        tmp_next = tmp->next;
+        tmp_prev = tmp->prev;
+        if(ft_strcmp(cmd, tmp->data) == 0)
+        {
+            // free current node
+            if (tmp_prev)
+            {
+                tmp_prev->next = tmp_next;
+                if (tmp_next)
+                    tmp_next->prev = tmp_prev;
+            }
+            else
+            {
+                g_var.env = tmp_next;
+                if (tmp_next)
+                    tmp_next->prev = NULL;
+            }
+            break;
+        }     
+        tmp = tmp_next;
     }
 }

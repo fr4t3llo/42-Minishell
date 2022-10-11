@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: matef <matef@student.42.fr>                +#+  +:+       +#+         #
+#    By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 15:37:33 by skasmi            #+#    #+#              #
-#    Updated: 2022/10/07 16:27:31 by matef            ###   ########.fr        #
+#    Updated: 2022/10/11 17:56:50 by skasmi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror 
+CFLAGS=-Wall -Wextra -Werror
 
 NAME=minishell
 NAME2=minishell.h

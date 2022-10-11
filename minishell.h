@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/09 22:09:41 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/11 16:32:24 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_env
 	char			*data;
 	char			*value;
 	struct s_env	*next;
-	// struct s_env	*prev;
+	struct s_env	*prev;
 }	t_env;
 
 typedef	struct	s_global_var
