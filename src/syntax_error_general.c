@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 23:43:46 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/11 16:48:57 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:49:22 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_syntax_general(char *cmd)
 {
-	
 	if (ft_check_red(cmd) == 1)
 		return (1);
 	if (ft_check_pipe(cmd) == 1)

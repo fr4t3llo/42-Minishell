@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:37:15 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/01 23:08:27 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:49:36 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_lstadd_back(t_pipe **lst, char *new)
 
 	if (!*lst)
 	{
-		ft_lstadd_front(lst,  ft_lstnew(new));
+		ft_lstadd_front(lst, ft_lstnew(new));
 		return ;
 	}
 	lstptr = ft_lstlast(*lst);
-	lstptr->next =  ft_lstnew(new);
+	lstptr->next = ft_lstnew(new);
 }
 
 void	ft_lstadd_front(t_pipe **lst, t_pipe *new)
@@ -47,7 +47,7 @@ t_pipe	*ft_lstlast(t_pipe *lst)
 
 t_pipe	*ft_lstnew(char *content)
 {
-	t_pipe	*node;
+	t_pipe *node;
 
 	node = (t_pipe *)malloc(sizeof(t_pipe));
 	if (!node)

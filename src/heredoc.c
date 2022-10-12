@@ -6,15 +6,15 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 00:33:57 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/24 20:09:00 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:49:41 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    ft_heredoc()
+void	ft_heredoc(void)
 {
-    char    *hear;
+	char	*hear;
 
-    hear = readline(">");
+	hear = readline(">");
 }

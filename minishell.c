@@ -6,13 +6,11 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:43:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/11 18:51:12 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:31:20 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 void	ft_new_env(char **env)
 {
@@ -31,9 +29,9 @@ void	ft_new_env(char **env)
 	}
 }
 
-void only_export()
+void	only_export(void)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = g_var.env;
 	while (env)
@@ -48,7 +46,6 @@ void only_export()
 
 int	ft_bulletin(char *cmd)
 {
-
 	t_pipe	*lst_of_args;
 	t_redic	*lst_of_red;
 	char	**ptr;
@@ -59,10 +56,7 @@ int	ft_bulletin(char *cmd)
 	if (lst_of_red)
 		run_rediction(lst_of_red);
 	ptr = args_lst_to_tab(lst_of_args);
-
-
 	ft_convert_to_lower(ptr[0]);
-	
 	/*
 		if (ft_strcmp(ptr[0], "exit") == 0)
 			return (ft_exit(ptr[0]), 1);
@@ -71,11 +65,10 @@ int	ft_bulletin(char *cmd)
 		if (ft_strcmp(ptr[0], "env") == 0)
 			return (ft_env(t), 1);
 	*/
-
 	if (ft_strcmp(ptr[0], "cd") == 0)
 		return (ft_cd(ptr[1]), 1);
 	else if (ft_strcmp(ptr[0], "env") == 0)
-			return (ft_env(), 1);
+		return (ft_env(), 1);
 	else if (ft_strcmp(ptr[0], "unset") == 0)
 		return (ft_unset_more_then_one(ptr), 1);
 	else if (ft_strcmp(ptr[0], "export") == 0)
@@ -86,7 +79,6 @@ int	ft_bulletin(char *cmd)
 	}
 	return (0);
 }
-
 
 /**
 	to do list 
@@ -99,7 +91,6 @@ int	ft_bulletin(char *cmd)
 	exuction
  */
 
-
 /**
  * 
  * 
@@ -108,8 +99,6 @@ int	ft_bulletin(char *cmd)
  * 
  * 
  */
-
-
 
 /**
  *  # error need to be fixed in bultins
@@ -128,7 +117,6 @@ int	ft_bulletin(char *cmd)
  * ---> export
 */
 
-
 /**
  * # syntax errors
  * 
@@ -139,18 +127,17 @@ int	ft_bulletin(char *cmd)
  * 
 */
 
-
-int only_space(char *cmd)
+int	only_space(char *cmd)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (cmd[++i])
 	{
 		if (cmd[i] != ' ')
-			return 0;
+			return (0);
 	}
-	return 1;
+	return (1);
 }
 
 int	main(int ac, char **av, char **env)
@@ -161,7 +148,7 @@ int	main(int ac, char **av, char **env)
 
 	fd[0] = dup(0);
 	fd[1] = dup(1);
-	(void) av;
+	(void)av;
 	if (ac == 1)
 	{
 		ft_new_env(env);
@@ -171,16 +158,16 @@ int	main(int ac, char **av, char **env)
 		{
 			cmd = readline("\033[37mFRATELLO😈=> ");
 			if (!cmd)
-			 	break ; // free allocated memory
+				break ; // free allocated memory
 			check_espace = ft_split(cmd, ' ');
 			if (cmd[0] == '\0' || only_space(cmd))
-				continue;
+				continue ;
 			add_history(cmd);
 			if (ft_syntax_general(cmd) == 1)
 				printf("\033[31mMinishell : syntax error !!!\n\033[37m");
 			else
 			{
-				// continue;
+				// continue ;
 				ft_pipe(cmd);
 			}
 			dup2(fd[0], 0);
@@ -191,6 +178,3 @@ int	main(int ac, char **av, char **env)
 	}
 	return (0);
 }
-
-
-

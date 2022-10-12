@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 23:56:05 by matef             #+#    #+#             */
-/*   Updated: 2022/10/05 20:00:07 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:48:40 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_lstadd_back_red(t_redic **lst, char *new, char c)
 
 	if (!*lst)
 	{
-		ft_lstadd_front_red(lst,  ft_lstnew_red(new, c));
+		ft_lstadd_front_red(lst, ft_lstnew_red(new, c));
 		return ;
 	}
 	lstptr = ft_lstlast_red(*lst);
-	lstptr->next =  ft_lstnew_red(new, c);
+	lstptr->next = ft_lstnew_red(new, c);
 }
 
 void	ft_lstadd_front_red(t_redic **lst, t_redic *new)
@@ -45,24 +45,24 @@ t_redic	*ft_lstlast_red(t_redic *lst)
 	return (ptr);
 }
 
-int get_type_of_red(char c)
+int	get_type_of_red(char c)
 {
-    if (c == '>')
-       return (RED_OUT);
-    else if (c == '<')
-        return (RED_IN);
-    return (APPEND);
+	if (c == '>')
+		return (RED_OUT);
+	else if (c == '<')
+		return (RED_IN);
+	return (APPEND);
 }
 
 t_redic	*ft_lstnew_red(char *content, char c)
 {
-	t_redic	*node;
+	t_redic *node;
 
 	node = (t_redic *)malloc(sizeof(t_redic));
 	if (!node)
 		return (0);
-   
-    node->type = get_type_of_red(c);
+
+	node->type = get_type_of_red(c);
 	node->content = content;
 	node->next = 0;
 	return (node);

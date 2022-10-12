@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:23:42 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/09 12:12:37 by matef            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:51:22 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 // if ((getcwd(buff, sizeof(buff))) == NULL)
 //     printf("Erroooor\n");
-// else 
+// else
 void	ft_pwd(int c)
 {
-	(void)c;
 	char	s[1024];
 
+	(void)c;
 	printf("%s\n", getcwd(s, 1024));
 }

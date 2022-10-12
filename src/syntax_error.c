@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:00:12 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/26 17:04:01 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:49:17 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_check_single_dbl_qt(char *cmd)
 		i++;
 	}
 	return (0);
-}	
+}
 
 int	ft_check_pipe(char *cmd)
 {

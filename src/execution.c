@@ -6,19 +6,19 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 21:22:44 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/11 16:52:04 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:49:54 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char **ft_get_env2(void)
+char	**ft_get_env2(void)
 {
-	int i;
+	int		i;
 	char	**ptr;
+	t_env	*tmp;
 
 	i = 0;
-	t_env *tmp;
 	tmp = g_var.env;
 	while (tmp)
 	{
@@ -39,19 +39,19 @@ char **ft_get_env2(void)
 	return (ptr);
 }
 
-void    ft_start_exe(t_pipe *lst)
+void	ft_start_exe(t_pipe *lst)
 {
-    t_pipe *tmp;
+	t_pipe	*tmp;
 	int		fd[2];
 	int		pid;
 	int		status;
 
-    tmp = lst;
+	tmp = lst;
 	if (lst->next == NULL)
 		if (ft_bulletin(lst->cmd))
 			return ;
-    while (tmp)
-    {
+	while (tmp)
+	{
 		if (tmp->next)
 			pipe(fd);
 		pid = fork();
@@ -59,7 +59,7 @@ void    ft_start_exe(t_pipe *lst)
 		{
 			ft_puterror("fork", ": Resource temporarily unavailable\n");
 			// set 1 global varibal status here
-			return ;	
+			return ;
 		}
 		if (pid == 0)
 		{
@@ -69,7 +69,7 @@ void    ft_start_exe(t_pipe *lst)
 				close(fd[1]);
 				close(fd[0]);
 			}
-        	ft_execution(tmp->cmd);
+			ft_execution(tmp->cmd);
 		}
 		if (tmp->next)
 		{
@@ -78,22 +78,23 @@ void    ft_start_exe(t_pipe *lst)
 			close(fd[1]);
 		}
 		else
-			close (0);
-    	tmp = tmp->next;
+			close(0);
+		tmp = tmp->next;
 	}
 	while (1)
 		if (waitpid(-1, &status, 0) == -1)
-			break;
+			break ;
 	// chaeck status using macros here
 }
 
-void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
+void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args,
+		t_redic **lst_of_red)
 {
 	t_pipe	*tmp;
 	int		i;
 	int		j;
 	char	c;
-	
+
 	i = 0;
 	tmp = *lst_of_args;
 	while (cmd[i])
@@ -110,7 +111,7 @@ void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
 			while (cmd[i] && cmd[i] == ' ')
 				i++;
 			j = i;
-			while (cmd[i] && !ft_strchr(" ><", cmd[i]))//  cmd[i] != ' ')
+			while (cmd[i] && !ft_strchr(" ><", cmd[i])) //  cmd[i] != ' ')
 				i++;
 			if (cmd[i])
 				i--;
@@ -121,11 +122,11 @@ void	ft_get_args_and_red(char *cmd, t_pipe **lst_of_args, t_redic **lst_of_red)
 			j = i;
 			while (cmd[i] && cmd[i] != ' ' && cmd[i] != '>' && cmd[i] != '<')
 			{
-				if (cmd[i] && ( cmd[i] == '\"' || cmd[i] == '\''))
+				if (cmd[i] && (cmd[i] == '\"' || cmd[i] == '\''))
 				{
 					c = cmd[i];
 					i++;
-					while (cmd[i] && ( cmd[i] != c))
+					while (cmd[i] && (cmd[i] != c))
 						i++;
 				}
 				i++;
@@ -153,21 +154,20 @@ int	size_of_lst(t_pipe *lst_of_args)
 
 char	**args_lst_to_tab(t_pipe *lst_of_args)
 {
-
 	int		len;
 	char	**args;
 	t_pipe	*tmp;
 	int		i;
-	
+
 	len = size_of_lst(lst_of_args);
 	args = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!args)
-		return NULL;
+		return (NULL);
 	i = 0;
 	tmp = lst_of_args;
 	while (tmp)
 	{
-		args[i++] = tmp->cmd;	
+		args[i++] = tmp->cmd;
 		tmp = tmp->next;
 	}
 	args[i] = NULL;
@@ -181,31 +181,27 @@ void	ft_puterror(char *err, char *msg)
 	ft_putstr_fd(msg, 2);
 }
 
-void    ft_execution(char   *cmd)
+void	ft_execution(char *cmd)
 {
 	t_pipe	*lst_of_args;
 	t_redic	*lst_of_red;
-    char **single_path;
+	char	**single_path;
 	char	**ptr;
 	int		i;
-	
-	lst_of_args = NULL;
-	lst_of_red	= 	NULL;
-	ft_get_args_and_red(cmd, &lst_of_args, &lst_of_red);
 
+	lst_of_args = NULL;
+	lst_of_red = NULL;
+	ft_get_args_and_red(cmd, &lst_of_args, &lst_of_red);
 	// protect if not cmd
-	
 	ptr = args_lst_to_tab(lst_of_args);
 	i = -1;
-
 	if (lst_of_red)
 		run_rediction(lst_of_red);
-
 	ft_convert_to_lower(ptr[0]);
 	single_path = ft_split(getenv("PATH"), ':');
 	while (single_path[++i])
-    	execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr, ft_get_env2());
-
+		execve(ft_strjoin(ft_strjoin(single_path[i], "/"), ptr[0]), ptr,
+				ft_get_env2());
 	ft_puterror(ptr[0], ":command not found\n");
-	exit (127);
+	exit(127);
 }

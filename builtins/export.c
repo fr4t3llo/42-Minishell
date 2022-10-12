@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:55:51 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/11 18:53:20 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:52:12 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 /*
 char	*ft_get_value(char *cmd)
 {
-	int 	i;
-	int 	j;
-	char	*value = NULL;
+	int		i;
+	int		j;
+	char	*value;
 
+	value = NULL;
 	j = 0;
 	i = 0;
 	while (cmd[i])
@@ -38,18 +39,19 @@ char	*ft_get_value(char *cmd)
 		if (cmd[i] == '=')
 		{
 			value = ft_substr(cmd, ++i, j);
-			break;
+			break ;
 		}
 		i++;
 	}
 	return (ft_strdup(value));
 }
 
-void *ft_get_data(char *cmd)
+void	*ft_get_data(char *cmd)
 {
-	char *str;
-	int i;
-	int j;
+	char	*str;
+	int		i;
+	int		j;
+
 	
 	i = 0;
 	while (cmd[i] != '=' && cmd[i])
@@ -71,24 +73,27 @@ char	*get_from_env(char *var)
 	while (tmp)
 	{
 		if (!ft_strcmp(var, tmp->data))
-			return tmp->value;
+			return (tmp->value);
 		tmp = tmp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 void	ft_export(char **cmd)
 {
 	t_env	*tmp;
-	tmp = g_var.env;
-	char *val;
-	char *var;
-	int len;
+	char	*val;
+	char	*var;
+	int		len;
+	int		i;
+	char	*to_exp;
+	t_env	*new;
 
-	int i = 1;
+	tmp = g_var.env;
+	i = 1;
 	while (cmd[i])
 	{
-		char *to_exp = cmd[i];
+		to_exp = cmd[i];
 		if (ft_strstr(to_exp, "="))
 		{
 			val = ft_strstr(to_exp, "=") + 1;
@@ -107,7 +112,7 @@ void	ft_export(char **cmd)
 			var = cmd[i];
 			val = NULL;
 		}
-		t_env *new = (t_env*)malloc(sizeof(t_env));
+		new = (t_env *)malloc(sizeof(t_env));
 		if (!new)
 			return ;
 		new->data = var;
