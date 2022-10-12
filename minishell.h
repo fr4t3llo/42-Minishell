@@ -6,7 +6,7 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:44:10 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/12 16:32:44 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/12 22:44:17 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int					ft_check_single_dbl_qt(char *cmd);
 int					ft_complete(char *cmd, int i);
 int					ft_check_single_dbl_qt(char *cmd);
 // Expend
-int					ft_expand(char *cmd);
+char				*ft_expand(char *cmd);
 
 //libft_funcs
 char				**ft_split(char const *s, char c);
