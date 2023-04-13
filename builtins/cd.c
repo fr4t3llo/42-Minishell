@@ -6,57 +6,103 @@
 /*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:40:28 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/12 16:51:57 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/22 04:03:59 by skasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// char	*ft_get_cd(char *cmd)
-// {
-// 	char	**tab;
-
-// 	tab = ft_split(cmd, ' ');
-// 	return (tab[0]);
-// }
-
-int	ft_get_cd_without_arg(char *cmd)
+void	ft_error_cmd(char **cmd)
 {
-	char	**tab;
+	printf("%s: invalid option %c\n", cmd[0], cmd[1][1]);
+	printf("cd: usage [without options] [dir]\n");
+	return ;
+}
 
-	tab = ft_split(cmd, ' ');
-	if (!tab[1])
-		return (1);
+void	ft_change_pwd_and_old(char *ptr, char *cwd)
+{
+	t_env	*t;
+
+	t = g_var.env;
+	if (errno == ENOENT)
+	{
+		perror("cd: error retrieving current directory: getcwd:\
+				cannot access parent directories");
+		return ;
+	}
+	if (get_from_env("OLDPWD") == NULL)
+	{
+		ft_aux_export(ft_strdup("OLDPWD"), cwd);
+		return ;
+	}
+	while (t)
+	{
+		if (ft_strcmp(ptr, t->data) == 0)
+		{
+			t->value = cwd;
+			return ;
+		}
+		t = t->next;
+	}
+}
+
+void	ft_if_null_path(char *home)
+{
+	t_env	*t;
+
+	t = g_var.env;
+	home = get_from_env("HOME");
+	if (!home)
+	{
+		ft_puterror("cd", ": HOME not set");
+		write(1, "\n", 1);
+		return ;
+	}
+	chdir(home);
+	while (t)
+	{
+		if (ft_strcmp("PWD", t->data) == 0)
+		{
+			t->value = home;
+			return ;
+		}
+		t = t->next;
+	}
+	return ;
+}
+
+void	ft_getcwd(void)
+{
+	char	*s;
+
+	s = getcwd(NULL, 0);
+	add_garbage(s);
+	if (g_var.pwd)
+		ft_change_pwd_and_old("PWD", s);
+}
+
+void	ft_cd(char **path)
+{
+	int		nb;
+	t_env	*t;
+
+	t = g_var.env;
+	nb = 0;
+	if (path[1] == NULL)
+		return (ft_if_null_path(path[1]));
+	if (!path || !*path || ft_strncmp(path[0], "cd", 255))
+		return ;
+	if (path[1] && path[1][0] == '-' && path[1][1] != '\0' && path[1][1] != '-')
+		ft_error_cmd(path);
+	else if (path[1])
+	{
+		if (g_var.oldpwd)
+			ft_if_path();
+		nb = chdir(path[1]);
+	}
+	if (nb < 0)
+		perror("cd");
 	else
-		return (0);
-}
-
-char	*ft_get_home(void)
-{
-	char	*home;
-
-	home = getenv("HOME");
-	return (home);
-}
-
-void	ft_cd(char *cmd)
-{
-	char	*home;
-
-	home = ft_get_home();
-	if (!cmd)
-		return ;
-	// if (ft_get_cd_without_arg(cmd) == 1)
-	// {
-	// 	if (chdir(home) == 0)
-	// 		return ;
-	// }
-	// else if (ft_get_cd_without_arg(cmd) == 0)
-	// {
-	// 	if (chdir(cmd) == 0)
-	// 		return ;
-	// }
-	if (chdir(cmd) == 0)
-		return ;
-	ft_puterror(cmd, ": No such file or directory\n");
+		ft_getcwd();
+	g_var.status = 0;
 }

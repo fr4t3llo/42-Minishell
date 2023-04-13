@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 23:56:01 by matef             #+#    #+#             */
-/*   Updated: 2022/10/12 16:32:15 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/22 05:45:45 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	open_to_write(char *file)
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		// ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd("Error fd\n", 2);
 		return ;
 	}
 	dup2(fd, 1);
@@ -33,7 +33,7 @@ void	open_to_read(char *file)
 	fd = open(file, O_RDONLY, 0644);
 	if (fd < 0)
 	{
-		// ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd("Error fd\n", 2);
 		return ;
 	}
 	dup2(fd, 0);
@@ -47,7 +47,7 @@ void	open_to_append(char *file)
 	fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd < 0)
 	{
-		// ft_putstr_fd("No such file or directory fff\n", 2);
+		ft_putstr_fd("Error fd\n", 2);
 		return ;
 	}
 	dup2(fd, 1);

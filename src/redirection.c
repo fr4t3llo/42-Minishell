@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 23:56:05 by matef             #+#    #+#             */
-/*   Updated: 2022/10/12 16:48:40 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/22 05:45:47 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	get_type_of_red(char c)
 
 t_redic	*ft_lstnew_red(char *content, char c)
 {
-	t_redic *node;
+	t_redic	*node;
 
 	node = (t_redic *)malloc(sizeof(t_redic));
 	if (!node)
 		return (0);
-
+	add_garbage(node);
 	node->type = get_type_of_red(c);
-	node->content = content;
+	node->content = ft_expand(content);
 	node->next = 0;
 	return (node);
 }

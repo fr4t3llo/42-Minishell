@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 22:25:28 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/23 01:30:04 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/19 23:58:25 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*ft_itoa(int n)
 	tmp = malloc(sizeof(char) * (k + 1));
 	if (!tmp)
 		return (NULL);
+	add_garbage(tmp);
 	if (n < 0)
 	{
 		tmp[0] = '-';

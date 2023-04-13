@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:08 by skasmi            #+#    #+#             */
-/*   Updated: 2022/09/25 22:58:50 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/19 23:58:59 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_strdup(const char *s1)
 	p = (char *)malloc(sizeof(char) * (n + 1));
 	if (!p)
 		return (NULL);
+	add_garbage(p);
 	while (s1[i])
 	{
 		p[i] = s1[i];

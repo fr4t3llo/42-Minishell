@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 02:46:32 by skasmi            #+#    #+#             */
-/*   Updated: 2021/11/27 22:24:07 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/20 00:56:58 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
+// #include "libft.h"
+#include "../minishell.h"
 
 int	ft_is_separator(char c, char cr)
 {
@@ -70,6 +72,7 @@ int	ft_write_split(char **split, char *str, char c)
 			split[w] = (char *)malloc(sizeof(char) * (j + 1));
 			if (!(split + w))
 				return (0);
+			add_garbage(split[w]);
 			ft_write_word(split[w], str + i, c);
 			i += j;
 			w++;
@@ -89,6 +92,7 @@ char	**ft_split(char const *s, char c)
 	rtn = (char **)malloc(sizeof(char *) * (w + 1));
 	if (!rtn)
 		return (NULL);
+	add_garbage(rtn);
 	if (!(ft_write_split(rtn, (char *) s, c)))
 	{
 		w = -1;

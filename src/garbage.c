@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   garbage.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 17:07:35 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/21 16:14:43 by skasmi           ###   ########.fr       */
+/*   Created: 2022/10/18 20:57:16 by matef             #+#    #+#             */
+/*   Updated: 2022/10/22 05:45:37 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_bzero(void *str, size_t n)
+void	add_garbage(void *ptr)
 {
-	size_t	i;
-	char	*s;
+	t_garbage	*new;
 
-	i = 0;
-	s = (char *)str;
-	while (i < n)
+	new = (t_garbage *)malloc(sizeof(t_garbage));
+	if (!new)
+		return ;
+	new->ptr = ptr;
+	new->next = NULL;
+	if (!g_var.garbage)
+		g_var.garbage = new;
+	else
 	{
-		s[i] = 0;
-		i++;
+		new->next = g_var.garbage;
+		g_var.garbage = new;
 	}
 }

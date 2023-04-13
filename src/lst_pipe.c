@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skasmi <skasmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:37:15 by skasmi            #+#    #+#             */
-/*   Updated: 2022/10/12 16:49:36 by skasmi           ###   ########.fr       */
+/*   Updated: 2022/10/22 05:45:43 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ t_pipe	*ft_lstlast(t_pipe *lst)
 
 t_pipe	*ft_lstnew(char *content)
 {
-	t_pipe *node;
+	t_pipe	*node;
 
 	node = (t_pipe *)malloc(sizeof(t_pipe));
 	if (!node)
 		return (0);
-	node->cmd = content;
+	add_garbage(node);
+	node->cmd = ft_extratct_string_from_qutes(ft_expand(content));
 	node->next = 0;
 	return (node);
 }
