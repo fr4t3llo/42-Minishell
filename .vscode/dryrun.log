@@ -1,7 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/skasmi/Desktop/minishell_repo'
-gcc -Wall -Wextra -Werror -lreadline   -c -o minishell.o minishell.c
- 
-gcc -Wall -Wextra -Werror -lreadline  minishell.o -o minishell 
-make: Leaving directory `/Users/skasmi/Desktop/minishell_repo'
- 
